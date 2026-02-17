@@ -54,10 +54,7 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/50 to-emerald-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
-      <div className="absolute top-0 right-1/3 w-72 h-72 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       
       <div className="relative w-full max-w-md animate-fade-in">
         {/* Logo */}
@@ -65,14 +62,14 @@ export default function SignInPage() {
           <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg group-hover:shadow-emerald-500/25 transition-all group-hover:scale-105">
             <Shield className="h-6 w-6 text-white" />
           </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold text-black">
             SponsorAssure
           </span>
         </Link>
 
-        <div className="glass-card rounded-2xl p-8 border hover:border-emerald-200/50 transition-all">
+        <div className="premium-card rounded-lg p-8 border border-gray-200 bg-white">
           <div className="space-y-2 mb-8 text-center">
-            <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
+            <h1 className="text-3xl font-bold text-black">Welcome back</h1>
             <p className="text-gray-600">
               Sign in to your account to continue protecting your sponsor relationships
             </p>

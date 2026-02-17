@@ -6,23 +6,23 @@ import { CheckCircle, Shield, Calendar, FileText, BarChart3, Zap, ArrowRight, St
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/50 to-emerald-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b glass-card">
+      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg transition-all group-hover:shadow-emerald-500/25 group-hover:scale-105">
+            <div className="p-2 bg-black rounded-lg transition-all group-hover:bg-gray-800">
               <Shield className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-black">
               SponsorAssure
             </span>
           </Link>
           <div className="hidden sm:flex items-center space-x-3">
-            <Button variant="ghost" className="btn-modern" asChild>
+            <Button variant="ghost" className="btn-premium text-gray-600 hover:text-black" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <Button className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
+            <Button className="btn-premium bg-blue-600 hover:bg-blue-700 text-white" asChild>
               <Link href="/auth/sign-up" className="flex items-center space-x-2">
                 <span>Get Started</span>
                 <ArrowRight className="h-4 w-4" />
@@ -30,7 +30,7 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="sm:hidden">
-            <Button size="sm" className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600" asChild>
+            <Button size="sm" className="btn-premium bg-blue-600 hover:bg-blue-700 text-white" asChild>
               <Link href="/auth/sign-up">Start Free</Link>
             </Button>
           </div>
@@ -38,23 +38,17 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background patterns */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-teal-50/50"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
-        
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:pt-24 sm:pb-32 text-center">
+      <section className="relative overflow-hidden bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-24 sm:pb-32 text-center">
           <div className="max-w-5xl mx-auto animate-fade-in">
-            <Badge className="mb-6 px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 border-emerald-200/50 text-emerald-800 font-medium animate-scale-in" variant="secondary">
-              <Star className="h-4 w-4 mr-2 text-yellow-500 fill-current" />
+            <div className="mb-6 inline-flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700">
+              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
               Save sponsor relationships worth $100K+
-            </Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-slide-up">
-              <span className="text-gray-900">Never Miss Another</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-slide-up text-black">
+              Never Miss Another
               <br />
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">
-                Sponsor Deliverable
-              </span>
+              Sponsor Deliverable
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto animate-slide-up">
               Event teams use SponsorAssure to track deliverables, avoid missed obligations, 
@@ -63,7 +57,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 animate-slide-up">
               <Button 
                 size="lg" 
-                className="btn-modern text-lg px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-xl shadow-emerald-500/25 w-full sm:w-auto" 
+                className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
@@ -74,7 +68,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="btn-modern text-lg px-8 py-4 border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 w-full sm:w-auto"
+                className="btn-premium text-lg px-8 py-4 border-gray-200 hover:border-gray-300 hover:bg-gray-50 w-full sm:w-auto"
               >
                 <span className="flex items-center space-x-2">
                   <span>Watch Demo</span>
@@ -85,27 +79,18 @@ export default function HomePage() {
             
             {/* Enhanced Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 animate-slide-up">
-              <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
-                <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">98%</div>
-                  <TrendingUp className="h-5 w-5 text-green-500 ml-2" />
-                </div>
+              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
+                <div className="text-4xl font-bold text-black mb-2">98%</div>
                 <div className="text-sm font-medium text-gray-700">Deliverable completion rate</div>
                 <div className="text-xs text-gray-500 mt-1">Industry-leading accuracy</div>
               </div>
-              <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
-                <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">$50K</div>
-                  <Shield className="h-5 w-5 text-blue-500 ml-2" />
-                </div>
+              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
+                <div className="text-4xl font-bold text-black mb-2">$50K</div>
                 <div className="text-sm font-medium text-gray-700">Average sponsor value protected</div>
                 <div className="text-xs text-gray-500 mt-1">Per client relationship</div>
               </div>
-              <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
-                <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">7</div>
-                  <Zap className="h-5 w-5 text-yellow-500 ml-2" />
-                </div>
+              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
+                <div className="text-4xl font-bold text-black mb-2">7</div>
                 <div className="text-sm font-medium text-gray-700">Days to full setup</div>
                 <div className="text-xs text-gray-500 mt-1">Get started instantly</div>
               </div>
@@ -115,10 +100,10 @@ export default function HomePage() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="relative py-20 sm:py-24 bg-white">
+      <section className="relative py-20 sm:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
               The Cost of Missed Sponsor Deliverables
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -127,9 +112,9 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Problem Card */}
-            <div className="glass-card p-8 rounded-2xl border border-red-100 hover:border-red-200 transition-all group">
+            <div className="premium-card p-8 rounded-lg border border-red-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-red-50 rounded-xl mr-4 group-hover:bg-red-100 transition-colors">
+                <div className="p-3 bg-red-50 rounded-lg mr-4">
                   <div className="text-2xl">⚠️</div>
                 </div>
                 <h3 className="text-2xl font-bold text-red-700">The Problem</h3>
@@ -159,9 +144,9 @@ export default function HomePage() {
             </div>
             
             {/* Solution Card */}
-            <div className="glass-card p-8 rounded-2xl border border-green-100 hover:border-green-200 transition-all group">
+            <div className="premium-card p-8 rounded-lg border border-green-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-green-50 rounded-xl mr-4 group-hover:bg-green-100 transition-colors">
+                <div className="p-3 bg-green-50 rounded-lg mr-4">
                   <CheckCircle className="h-8 w-8 text-green-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-green-700">The Solution</h3>
@@ -194,22 +179,17 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/30">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
-        
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 sm:mb-20">
-            <Badge className="mb-6 px-4 py-2 bg-emerald-100 border-emerald-200 text-emerald-800 font-medium" variant="secondary">
+            <div className="mb-6 inline-flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700">
               <Zap className="h-4 w-4 mr-2" />
               Powerful Features
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
               Everything You Need to Protect
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Sponsor Relationships
-              </span>
+              Sponsor Relationships
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Built specifically for event teams managing sponsor deliverables with enterprise-grade reliability
@@ -217,13 +197,13 @@ export default function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            <div className="glass-card p-8 rounded-2xl border hover:border-emerald-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl mr-4 group-hover:from-emerald-200 group-hover:to-teal-200 transition-all">
-                  <Calendar className="h-8 w-8 text-emerald-600" />
+                <div className="p-3 bg-blue-50 rounded-lg mr-4">
+                  <Calendar className="h-8 w-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Smart Deadline Tracking</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Smart Deadline Tracking</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -231,13 +211,13 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-purple-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-teal-100 to-pink-100 rounded-xl mr-4 group-hover:from-teal-200 group-hover:to-pink-200 transition-all">
-                  <BarChart3 className="h-8 w-8 text-purple-600" />
+                <div className="p-3 bg-blue-50 rounded-lg mr-4">
+                  <BarChart3 className="h-8 w-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Risk Dashboard</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Risk Dashboard</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -245,13 +225,13 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-blue-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl mr-4 group-hover:from-blue-200 group-hover:to-emerald-200 transition-all">
+                <div className="p-3 bg-blue-50 rounded-lg mr-4">
                   <FileText className="h-8 w-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Package Templates</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Package Templates</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -259,13 +239,13 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-green-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl mr-4 group-hover:from-green-200 group-hover:to-emerald-200 transition-all">
+                <div className="p-3 bg-green-50 rounded-lg mr-4">
                   <CheckCircle className="h-8 w-8 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Completion Tracking</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Completion Tracking</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -273,13 +253,13 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-yellow-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl mr-4 group-hover:from-amber-200 group-hover:to-amber-300 transition-all">
-                  <Users className="h-8 w-8 text-yellow-600" />
+                <div className="p-3 bg-gray-50 rounded-lg mr-4">
+                  <Users className="h-8 w-8 text-gray-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Team Assignment</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Team Assignment</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -287,13 +267,13 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-emerald-200/50 transition-all group hover:shadow-lg">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl mr-4 group-hover:from-emerald-200 group-hover:to-blue-200 transition-all">
-                  <Shield className="h-8 w-8 text-emerald-600" />
+                <div className="p-3 bg-blue-50 rounded-lg mr-4">
+                  <Shield className="h-8 w-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Export Reports</h3>
+                  <h3 className="text-xl font-bold text-black mb-1">Export Reports</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed">
@@ -305,10 +285,10 @@ export default function HomePage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="relative py-20 sm:py-24 bg-white">
+      <section className="relative py-20 sm:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
               Simple, Transparent Pricing
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -318,12 +298,12 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Starter Plan */}
-            <div className="glass-card p-8 rounded-2xl border hover:border-gray-300 transition-all group">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
                 <p className="text-gray-600 mb-6">Perfect for single event teams getting started</p>
                 <div className="flex items-baseline mb-2">
-                  <span className="text-4xl font-bold text-gray-900">$299</span>
+                  <span className="text-4xl font-bold text-black">$299</span>
                   <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
                 </div>
                 <p className="text-sm text-gray-500">Billed monthly</p>
@@ -356,7 +336,7 @@ export default function HomePage() {
                 </li>
               </ul>
               
-              <Button className="w-full btn-modern" variant="outline" asChild>
+              <Button className="w-full btn-premium" variant="outline" asChild>
                 <Link href="/auth/sign-up?plan=starter">
                   Start 14-Day Free Trial
                 </Link>
@@ -366,17 +346,17 @@ export default function HomePage() {
             {/* Growth Plan - Featured */}
             <div className="relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                <Badge className="px-4 py-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg">
-                  <Star className="h-4 w-4 mr-1 fill-current" />
+                <div className="px-4 py-1 bg-blue-600 text-white rounded-full text-sm font-medium shadow-lg">
+                  <Star className="h-4 w-4 mr-1 inline fill-current" />
                   Most Popular
-                </Badge>
+                </div>
               </div>
-              <div className="glass-card p-8 rounded-2xl border-2 border-emerald-200 hover:border-emerald-300 transition-all shadow-lg">
+              <div className="premium-card p-8 rounded-lg border-2 border-blue-200 bg-white shadow-lg">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Growth</h3>
+                  <h3 className="text-2xl font-bold text-black mb-2">Growth</h3>
                   <p className="text-gray-600 mb-6">Ideal for multi-event operations and growing teams</p>
                   <div className="flex items-baseline mb-2">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">$499</span>
+                    <span className="text-4xl font-bold text-blue-600">$499</span>
                     <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
                   </div>
                   <p className="text-sm text-gray-500">Billed monthly</p>
@@ -413,7 +393,7 @@ export default function HomePage() {
                   </li>
                 </ul>
                 
-                <Button className="w-full btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
+                <Button className="w-full btn-premium bg-blue-600 hover:bg-blue-700 text-white" asChild>
                   <Link href="/auth/sign-up?plan=growth">
                     Start 14-Day Free Trial
                   </Link>
@@ -422,12 +402,12 @@ export default function HomePage() {
             </div>
             
             {/* Enterprise Plan */}
-            <div className="glass-card p-8 rounded-2xl border hover:border-gray-300 transition-all group">
+            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
                 <p className="text-gray-600 mb-6">For large organizations with complex needs</p>
                 <div className="flex items-baseline mb-2">
-                  <span className="text-4xl font-bold text-gray-900">$999</span>
+                  <span className="text-4xl font-bold text-black">$999</span>
                   <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
                 </div>
                 <p className="text-sm text-gray-500">Custom pricing available</p>
@@ -464,7 +444,7 @@ export default function HomePage() {
                 </li>
               </ul>
               
-              <Button className="w-full btn-modern" variant="outline" asChild>
+              <Button className="w-full btn-premium" variant="outline" asChild>
                 <Link href="/contact?plan=enterprise">
                   Contact Sales Team
                 </Link>
@@ -486,27 +466,22 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-600 overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 sm:py-24 bg-black overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Protect Your
               <br className="hidden sm:block" />
-              <span className="text-yellow-300">Sponsor Relationships?</span>
+              Sponsor Relationships?
             </h2>
-            <p className="text-lg sm:text-xl text-emerald-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
               Join hundreds of event teams using SponsorAssure to ensure deliverable completion 
               and protect million-dollar sponsor renewals.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
               <Button 
                 size="lg" 
-                className="btn-modern text-lg px-8 py-4 bg-white text-emerald-600 hover:bg-emerald-50 shadow-xl w-full sm:w-auto font-semibold" 
+                className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
@@ -517,7 +492,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="btn-modern text-lg px-8 py-4 text-white border-white/30 hover:bg-white/10 backdrop-blur-sm w-full sm:w-auto"
+                className="btn-premium text-lg px-8 py-4 text-white border-gray-600 hover:bg-gray-800 w-full sm:w-auto"
               >
                 <span className="flex items-center space-x-2">
                   <span>Schedule Live Demo</span>
@@ -527,7 +502,7 @@ export default function HomePage() {
             </div>
             
             {/* Social proof */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-emerald-200 text-sm">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-400 text-sm">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="h-5 w-5 text-green-400" />
                 <span>No credit card required</span>
@@ -552,8 +527,8 @@ export default function HomePage() {
             {/* Brand */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-3 mb-6 group">
-                <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg group-hover:shadow-emerald-500/25 transition-all">
-                  <Shield className="h-6 w-6 text-white" />
+                <div className="p-2 bg-white rounded-lg transition-all group-hover:bg-gray-200">
+                  <Shield className="h-6 w-6 text-black" />
                 </div>
                 <span className="text-xl font-bold">SponsorAssure</span>
               </Link>
