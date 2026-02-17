@@ -18,7 +18,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/30">
       {/* Background grid pattern */}
       <div className="fixed inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px] pointer-events-none"></div>
       

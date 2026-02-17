@@ -6,12 +6,12 @@ import { CheckCircle, Shield, Calendar, FileText, BarChart3, Zap, ArrowRight, St
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/50 to-emerald-50">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b glass-card">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg transition-all group-hover:shadow-indigo-500/25 group-hover:scale-105">
+            <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg transition-all group-hover:shadow-emerald-500/25 group-hover:scale-105">
               <Shield className="h-6 w-6 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
@@ -22,7 +22,7 @@ export default function HomePage() {
             <Button variant="ghost" className="btn-modern" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <Button className="btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25" asChild>
+            <Button className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
               <Link href="/auth/sign-up" className="flex items-center space-x-2">
                 <span>Get Started</span>
                 <ArrowRight className="h-4 w-4" />
@@ -30,7 +30,7 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="sm:hidden">
-            <Button size="sm" className="btn-modern bg-gradient-to-r from-indigo-600 to-purple-600" asChild>
+            <Button size="sm" className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600" asChild>
               <Link href="/auth/sign-up">Start Free</Link>
             </Button>
           </div>
@@ -40,19 +40,19 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background patterns */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/50"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-teal-50/50"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:pt-24 sm:pb-32 text-center">
           <div className="max-w-5xl mx-auto animate-fade-in">
-            <Badge className="mb-6 px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 border-indigo-200/50 text-indigo-800 font-medium animate-scale-in" variant="secondary">
+            <Badge className="mb-6 px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 border-emerald-200/50 text-emerald-800 font-medium animate-scale-in" variant="secondary">
               <Star className="h-4 w-4 mr-2 text-yellow-500 fill-current" />
               Save sponsor relationships worth $100K+
             </Badge>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-slide-up">
               <span className="text-gray-900">Never Miss Another</span>
               <br />
-              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">
                 Sponsor Deliverable
               </span>
             </h1>
@@ -63,7 +63,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 animate-slide-up">
               <Button 
                 size="lg" 
-                className="btn-modern text-lg px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-xl shadow-indigo-500/25 w-full sm:w-auto" 
+                className="btn-modern text-lg px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-xl shadow-emerald-500/25 w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
@@ -74,7 +74,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="btn-modern text-lg px-8 py-4 border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50 w-full sm:w-auto"
+                className="btn-modern text-lg px-8 py-4 border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 w-full sm:w-auto"
               >
                 <span className="flex items-center space-x-2">
                   <span>Watch Demo</span>
@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 animate-slide-up">
               <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
                 <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">98%</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">98%</div>
                   <TrendingUp className="h-5 w-5 text-green-500 ml-2" />
                 </div>
                 <div className="text-sm font-medium text-gray-700">Deliverable completion rate</div>
@@ -95,7 +95,7 @@ export default function HomePage() {
               </div>
               <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
                 <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">$50K</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">$50K</div>
                   <Shield className="h-5 w-5 text-blue-500 ml-2" />
                 </div>
                 <div className="text-sm font-medium text-gray-700">Average sponsor value protected</div>
@@ -103,7 +103,7 @@ export default function HomePage() {
               </div>
               <div className="glass-card p-6 rounded-xl text-center hover:shadow-lg transition-all">
                 <div className="flex items-center justify-center mb-3">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">7</div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">7</div>
                   <Zap className="h-5 w-5 text-yellow-500 ml-2" />
                 </div>
                 <div className="text-sm font-medium text-gray-700">Days to full setup</div>
@@ -194,20 +194,20 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30">
+      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/30">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 sm:mb-20">
-            <Badge className="mb-6 px-4 py-2 bg-indigo-100 border-indigo-200 text-indigo-800 font-medium" variant="secondary">
+            <Badge className="mb-6 px-4 py-2 bg-emerald-100 border-emerald-200 text-emerald-800 font-medium" variant="secondary">
               <Zap className="h-4 w-4 mr-2" />
               Powerful Features
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
               Everything You Need to Protect
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                 Sponsor Relationships
               </span>
             </h2>
@@ -217,10 +217,10 @@ export default function HomePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            <div className="glass-card p-8 rounded-2xl border hover:border-indigo-200/50 transition-all group hover:shadow-lg">
+            <div className="glass-card p-8 rounded-2xl border hover:border-emerald-200/50 transition-all group hover:shadow-lg">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl mr-4 group-hover:from-indigo-200 group-hover:to-purple-200 transition-all">
-                  <Calendar className="h-8 w-8 text-indigo-600" />
+                <div className="p-3 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl mr-4 group-hover:from-emerald-200 group-hover:to-teal-200 transition-all">
+                  <Calendar className="h-8 w-8 text-emerald-600" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Smart Deadline Tracking</h3>
@@ -233,7 +233,7 @@ export default function HomePage() {
             
             <div className="glass-card p-8 rounded-2xl border hover:border-purple-200/50 transition-all group hover:shadow-lg">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl mr-4 group-hover:from-purple-200 group-hover:to-pink-200 transition-all">
+                <div className="p-3 bg-gradient-to-br from-teal-100 to-pink-100 rounded-xl mr-4 group-hover:from-teal-200 group-hover:to-pink-200 transition-all">
                   <BarChart3 className="h-8 w-8 text-purple-600" />
                 </div>
                 <div>
@@ -247,7 +247,7 @@ export default function HomePage() {
             
             <div className="glass-card p-8 rounded-2xl border hover:border-blue-200/50 transition-all group hover:shadow-lg">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl mr-4 group-hover:from-blue-200 group-hover:to-indigo-200 transition-all">
+                <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl mr-4 group-hover:from-blue-200 group-hover:to-emerald-200 transition-all">
                   <FileText className="h-8 w-8 text-blue-600" />
                 </div>
                 <div>
@@ -275,7 +275,7 @@ export default function HomePage() {
             
             <div className="glass-card p-8 rounded-2xl border hover:border-yellow-200/50 transition-all group hover:shadow-lg">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-xl mr-4 group-hover:from-yellow-200 group-hover:to-orange-200 transition-all">
+                <div className="p-3 bg-gradient-to-br from-amber-100 to-amber-200 rounded-xl mr-4 group-hover:from-amber-200 group-hover:to-amber-300 transition-all">
                   <Users className="h-8 w-8 text-yellow-600" />
                 </div>
                 <div>
@@ -287,10 +287,10 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="glass-card p-8 rounded-2xl border hover:border-indigo-200/50 transition-all group hover:shadow-lg">
+            <div className="glass-card p-8 rounded-2xl border hover:border-emerald-200/50 transition-all group hover:shadow-lg">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-gradient-to-br from-indigo-100 to-blue-100 rounded-xl mr-4 group-hover:from-indigo-200 group-hover:to-blue-200 transition-all">
-                  <Shield className="h-8 w-8 text-indigo-600" />
+                <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl mr-4 group-hover:from-emerald-200 group-hover:to-blue-200 transition-all">
+                  <Shield className="h-8 w-8 text-emerald-600" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Export Reports</h3>
@@ -366,17 +366,17 @@ export default function HomePage() {
             {/* Growth Plan - Featured */}
             <div className="relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                <Badge className="px-4 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+                <Badge className="px-4 py-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg">
                   <Star className="h-4 w-4 mr-1 fill-current" />
                   Most Popular
                 </Badge>
               </div>
-              <div className="glass-card p-8 rounded-2xl border-2 border-indigo-200 hover:border-indigo-300 transition-all shadow-lg">
+              <div className="glass-card p-8 rounded-2xl border-2 border-emerald-200 hover:border-emerald-300 transition-all shadow-lg">
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Growth</h3>
                   <p className="text-gray-600 mb-6">Ideal for multi-event operations and growing teams</p>
                   <div className="flex items-baseline mb-2">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">$499</span>
+                    <span className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">$499</span>
                     <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
                   </div>
                   <p className="text-sm text-gray-500">Billed monthly</p>
@@ -413,7 +413,7 @@ export default function HomePage() {
                   </li>
                 </ul>
                 
-                <Button className="w-full btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25" asChild>
+                <Button className="w-full btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
                   <Link href="/auth/sign-up?plan=growth">
                     Start 14-Day Free Trial
                   </Link>
@@ -486,7 +486,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 overflow-hidden">
+      <section className="relative py-20 sm:py-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-600 overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -499,14 +499,14 @@ export default function HomePage() {
               <br className="hidden sm:block" />
               <span className="text-yellow-300">Sponsor Relationships?</span>
             </h2>
-            <p className="text-lg sm:text-xl text-indigo-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-emerald-100 mb-10 max-w-3xl mx-auto leading-relaxed">
               Join hundreds of event teams using SponsorAssure to ensure deliverable completion 
               and protect million-dollar sponsor renewals.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
               <Button 
                 size="lg" 
-                className="btn-modern text-lg px-8 py-4 bg-white text-indigo-600 hover:bg-indigo-50 shadow-xl w-full sm:w-auto font-semibold" 
+                className="btn-modern text-lg px-8 py-4 bg-white text-emerald-600 hover:bg-emerald-50 shadow-xl w-full sm:w-auto font-semibold" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
@@ -527,7 +527,7 @@ export default function HomePage() {
             </div>
             
             {/* Social proof */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-indigo-200 text-sm">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-emerald-200 text-sm">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="h-5 w-5 text-green-400" />
                 <span>No credit card required</span>
@@ -552,7 +552,7 @@ export default function HomePage() {
             {/* Brand */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-3 mb-6 group">
-                <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-indigo-500/25 transition-all">
+                <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg group-hover:shadow-emerald-500/25 transition-all">
                   <Shield className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-xl font-bold">SponsorAssure</span>

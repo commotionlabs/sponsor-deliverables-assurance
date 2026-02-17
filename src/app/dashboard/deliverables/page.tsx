@@ -66,7 +66,7 @@ function DeliverableCard({ deliverable }: { deliverable: any }) {
 
   return (
     <div className={`glass-card p-6 rounded-2xl border transition-all hover:shadow-lg ${
-      isOverdue ? 'border-red-200/80 bg-red-50/50' : 'hover:border-indigo-200/50'
+      isOverdue ? 'border-red-200/80 bg-red-50/50' : 'hover:border-emerald-200/50'
     }`}>
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1 min-w-0">
@@ -183,7 +183,7 @@ export default async function DeliverablesPage() {
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50" asChild>
+          <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
             <Link href="/api/export/deliverables" className="flex items-center space-x-2">
               <Download className="h-4 w-4" />
               <span>Export CSV</span>
@@ -200,7 +200,7 @@ export default async function DeliverablesPage() {
               <p className="text-sm font-medium text-gray-600">Total Deliverables</p>
               <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl group-hover:from-blue-200 group-hover:to-indigo-200 transition-all">
+            <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl group-hover:from-blue-200 group-hover:to-emerald-200 transition-all">
               <FileText className="h-6 w-6 text-blue-600" />
             </div>
           </div>
@@ -228,7 +228,7 @@ export default async function DeliverablesPage() {
               <p className="text-3xl font-bold text-red-600">{stats.overdue}</p>
               <p className="text-xs text-gray-500">Need immediate attention</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-red-100 to-orange-100 rounded-xl group-hover:from-red-200 group-hover:to-orange-200 transition-all">
+            <div className="p-3 bg-gradient-to-br from-red-100 to-amber-200 rounded-xl group-hover:from-red-200 group-hover:to-amber-300 transition-all">
               <XCircle className="h-6 w-6 text-red-600" />
             </div>
           </div>
@@ -249,7 +249,7 @@ export default async function DeliverablesPage() {
       </div>
 
       {/* Filters */}
-      <div className="glass-card rounded-2xl border hover:border-indigo-200/50 transition-all">
+      <div className="glass-card rounded-2xl border hover:border-emerald-200/50 transition-all">
         <div className="p-6 border-b border-gray-100">
           <h3 className="text-xl font-bold text-gray-900">Filter & Search</h3>
         </div>
@@ -260,11 +260,11 @@ export default async function DeliverablesPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search deliverables..."
-                  className="pl-10 h-12 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
+                  className="pl-10 h-12 bg-white/80 border-gray-200 focus:border-emerald-300 focus:ring-emerald-200"
                 />
               </div>
             </div>
-            <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50 h-12 px-6">
+            <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 h-12 px-6">
               <Filter className="h-4 w-4 mr-2" />
               Filter
             </Button>
@@ -283,10 +283,10 @@ export default async function DeliverablesPage() {
             Deliverables will appear here when you add sponsors to your events
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25" asChild>
+            <Button className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
               <Link href="/dashboard/events/new">Create Event</Link>
             </Button>
-            <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50" asChild>
+            <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
               <Link href="/dashboard/sponsors/new">Add Sponsor</Link>
             </Button>
           </div>

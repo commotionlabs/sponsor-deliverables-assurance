@@ -53,7 +53,7 @@ export function DashboardNavigation({ user }: NavigationProps) {
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/dashboard" className="flex items-center space-x-3">
-            <div className="p-1.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg shadow-md">
+            <div className="p-1.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg shadow-md">
               <Shield className="h-5 w-5 text-white" />
             </div>
             <span className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
@@ -85,7 +85,7 @@ export function DashboardNavigation({ user }: NavigationProps) {
           <div className="p-6 border-b border-gray-100 hidden lg:block">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center space-x-3 group">
-              <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-indigo-500/25 transition-all group-hover:scale-105">
+              <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg group-hover:shadow-emerald-500/25 transition-all group-hover:scale-105">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
@@ -109,24 +109,24 @@ export function DashboardNavigation({ user }: NavigationProps) {
                   className={cn(
                     'flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all group',
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 border border-indigo-100 shadow-sm'
+                      ? 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700 border border-emerald-100 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/80'
                   )}
                 >
                   <div className={cn(
                     'p-1.5 rounded-lg transition-colors',
                     isActive 
-                      ? 'bg-gradient-to-br from-indigo-100 to-purple-100' 
+                      ? 'bg-gradient-to-br from-emerald-100 to-teal-100' 
                       : 'group-hover:bg-gray-100'
                   )}>
                     <item.icon className={cn(
                       'h-5 w-5 transition-colors', 
-                      isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-600'
+                      isActive ? 'text-emerald-600' : 'text-gray-400 group-hover:text-gray-600'
                     )} />
                   </div>
                   <span className="font-medium">{item.name}</span>
                   {isActive && (
-                    <div className="ml-auto w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
+                    <div className="ml-auto w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
                   )}
                 </Link>
               )
@@ -142,8 +142,8 @@ export function DashboardNavigation({ user }: NavigationProps) {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
-                    <span className="text-sm font-bold text-indigo-600">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+                    <span className="text-sm font-bold text-emerald-600">
                       {user.email?.charAt(0).toUpperCase()}
                     </span>
                   </div>
