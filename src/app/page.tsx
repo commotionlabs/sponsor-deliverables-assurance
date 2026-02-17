@@ -188,7 +188,7 @@ export default function HomePage() {
             <Button variant="ghost" size="sm" className="text-gray-600 hover:text-black hidden sm:inline-flex" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <Button size="sm" className="bg-black hover:bg-gray-800 text-white" asChild>
+            <Button size="sm" className="bg-black hover:bg-gray-800 text-white rounded-md" asChild>
               <Link href="/auth/sign-up">Get Started</Link>
             </Button>
           </div>
@@ -196,7 +196,7 @@ export default function HomePage() {
       </header>
 
       {/* HERO SECTION - Clean white minimal design */}
-      <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-white">
+      <section ref={heroRef} className="relative min-h-[82vh] flex items-center justify-center overflow-hidden bg-white">
         {/* Removed background accents for clean white canvas */}
 
         <motion.div 
@@ -209,17 +209,17 @@ export default function HomePage() {
             animate="animate"
             className="max-w-3xl mx-auto"
           >
-            {/* Pre-headline badge - minimal */}
-            <motion.div variants={fadeInUp} className="mb-4">
+            {/* Pre-headline badge - refined */}
+            <motion.div variants={fadeInUp} className="mb-3">
               <Badge className="bg-gray-100 text-gray-700 border-gray-200 px-3 py-1 text-xs font-medium">
                 Trusted by 1,200+ event professionals
               </Badge>
             </motion.div>
 
-            {/* Hero headline - smaller, tighter */}
+            {/* Hero headline - refined typography */}
             <motion.h1 
               variants={fadeInScale}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 leading-tight tracking-tight"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-black mb-3 leading-[1.1] tracking-tight"
             >
               Professional sponsor
               <br />
@@ -228,20 +228,20 @@ export default function HomePage() {
               </span>
             </motion.h1>
 
-            {/* Subtitle - smaller, tighter */}
+            {/* Subtitle - refined spacing and typography */}
             <motion.p 
               variants={fadeInUp}
-              className="text-base sm:text-lg text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg text-gray-600 mb-5 max-w-2xl mx-auto leading-[1.4]"
             >
               Transform deliverable chaos into partnership certainty.
               <br className="hidden sm:block" />
               Enterprise-grade tracking that scales.
             </motion.p>
 
-            {/* CTA buttons - minimal styling */}
+            {/* CTA buttons - refined spacing */}
             <motion.div 
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7"
             >
               <Button 
                 size="default" 
@@ -309,7 +309,7 @@ export default function HomePage() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="py-12 sm:py-16 bg-white relative overflow-hidden">
+      <section className="py-10 sm:py-14 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
@@ -319,12 +319,12 @@ export default function HomePage() {
             className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-3">
+              <div className="mb-2">
                 <AnimatedCounter 
                   end={1247} 
                   suffix="+" 
                   duration={2000} 
-                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
+                  className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
                   Events powered
@@ -333,13 +333,13 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-3">
+              <div className="mb-2">
                 <AnimatedCounter 
                   end={47} 
                   prefix="$" 
                   suffix="M+" 
                   duration={2200} 
-                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
+                  className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
                   Sponsor value protected
@@ -348,12 +348,12 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-3">
+              <div className="mb-2">
                 <AnimatedCounter 
                   end={99.2} 
                   suffix="%" 
                   duration={2400} 
-                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
+                  className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
                   On-time completion rate
@@ -362,12 +362,12 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-3">
+              <div className="mb-2">
                 <AnimatedCounter 
                   end={127000} 
                   suffix="+" 
                   duration={2600} 
-                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
+                  className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
                   Touchpoints managed
@@ -379,7 +379,7 @@ export default function HomePage() {
       </section>
 
       {/* TESTIMONIAL - Clean white minimal */}
-      <section className="py-16 sm:py-20 bg-white relative">
+      <section className="py-14 sm:py-18 bg-white relative">
         {/* Removed background accents for clean white canvas */}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -395,7 +395,7 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium mb-6 leading-relaxed text-black">
+              <blockquote className="text-xl sm:text-2xl lg:text-[1.75rem] font-medium mb-5 leading-[1.3] text-black">
                 "We went from 78% completion to 99.2% overnight.
                 <br className="hidden sm:block" />
                 This platform transformed our reputation."
@@ -429,7 +429,7 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-11 sm:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div 
@@ -437,12 +437,12 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto text-center mb-8"
+            className="max-w-2xl mx-auto text-center mb-7"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-black mb-3 leading-[1.2]">
               Enterprise-grade precision
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 leading-[1.4]">
               The professional system your reputation demands
             </p>
           </motion.div>
@@ -506,15 +506,15 @@ export default function HomePage() {
                 transition={{ duration: 0.3 }}
                 className="group"
               >
-                <div className="p-4 rounded bg-white border border-gray-200 hover:border-gray-300 transition-colors duration-200">
-                  <div className={`w-8 h-8 bg-gradient-to-r ${feature.gradient} rounded flex items-center justify-center mb-3`}>
+                <div className="p-4 rounded-lg bg-white border border-gray-200 hover:border-gray-300 transition-colors duration-200">
+                  <div className={`w-8 h-8 bg-gradient-to-r ${feature.gradient} rounded-md flex items-center justify-center mb-3`}>
                     <feature.icon className="h-4 w-4 text-white" />
                   </div>
                   
-                  <h3 className="text-lg font-medium text-black mb-2">
+                  <h3 className="text-lg font-medium text-black mb-2 leading-snug">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-[1.4]">
                     {feature.description}
                   </p>
                   
@@ -530,7 +530,7 @@ export default function HomePage() {
       </section>
 
       {/* QUOTE CALLOUT */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-11 sm:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -543,7 +543,7 @@ export default function HomePage() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <blockquote className="text-xl sm:text-2xl font-medium text-black mb-4 leading-relaxed">
+              <blockquote className="text-xl sm:text-2xl font-medium text-black mb-4 leading-[1.3]">
                 "Large-scale events demand precision systems — 
                 our teams now focus on creativity, not compliance."
               </blockquote>
@@ -565,7 +565,7 @@ export default function HomePage() {
       </section>
 
       {/* MID-PAGE CTA - Clean white minimal */}
-      <section className="py-16 sm:py-20 bg-gray-50 relative">
+      <section className="py-14 sm:py-18 bg-gray-50 relative">
         {/* Removed background accents for clean minimal look */}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -576,13 +576,13 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight text-black">
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold mb-3 leading-[1.2] text-black">
               Professional execution.
               <br />
               Lasting partnerships.
             </h2>
             
-            <p className="text-base sm:text-lg mb-6 max-w-xl mx-auto text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg mb-5 max-w-xl mx-auto text-gray-600 leading-[1.4]">
               Transform sponsor uncertainty into strategic advantage with enterprise-grade tracking
             </p>
             
@@ -615,7 +615,7 @@ export default function HomePage() {
       </section>
 
       {/* FINAL STATS */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-11 sm:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
@@ -625,12 +625,12 @@ export default function HomePage() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto text-center"
           >
             <motion.div variants={fadeInScale}>
-              <div className="text-2xl sm:text-3xl font-bold text-black mb-1">24/7</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1 leading-none">24/7</div>
               <div className="text-gray-600 text-sm">Enterprise support ready</div>
             </motion.div>
             
             <motion.div variants={fadeInScale}>
-              <div className="text-2xl sm:text-3xl font-bold text-black mb-1 flex items-center justify-center">
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1 flex items-center justify-center leading-none">
                 <AnimatedCounter end={3} duration={1500} />
                 <span className="ml-1">days</span>
               </div>
@@ -638,7 +638,7 @@ export default function HomePage() {
             </motion.div>
             
             <motion.div variants={fadeInScale}>
-              <div className="text-2xl sm:text-3xl font-bold text-black mb-1">100%</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1 leading-none">100%</div>
               <div className="text-gray-600 text-sm">Deliverable coverage</div>
             </motion.div>
           </motion.div>

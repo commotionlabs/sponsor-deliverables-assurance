@@ -19,16 +19,16 @@
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 88.2%; /* #E1E1E1 */
-  --input: 0 0% 88.2%;
+  --border: 0 0% 90%; /* #E6E6E6 - slightly softer */
+  --input: 0 0% 90%;
   --ring: 214 100% 47.8%;
-  --radius: 0.5rem; /* 8px - reduced for cleaner aesthetic */
+  --radius: 0.375rem; /* 6px - slightly more refined */
   
   /* Elevated minimalism color tokens */
   --color-base-1000: #000000; /* True black - Primary text */
   --color-base-900: #1A1A1A; /* Secondary text */
   --color-base-600: #666666; /* Supporting text */
-  --color-surface-100: #E1E1E1; /* Borders */
+  --color-surface-100: #E6E6E6; /* Borders - softer */
   --color-surface-50: #FAFAFA; /* Background */
   --color-primary-600: #0070F3; /* CTAs and accents */
   --color-white: #FFFFFF; /* Pure white */
