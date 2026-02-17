@@ -157,67 +157,9 @@ function TestimonialPortrait({
   )
 }
 
-// Enhanced button with magnetic effect
-function MagneticButton({ 
-  children, 
-  className = '', 
-  variant = 'default',
-  size = 'default',
-  asChild,
-  ...props 
-}: any) {
-  const ref = useRef<HTMLButtonElement>(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+// Removed MagneticButton component - using standard Button instead
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20
-    setPosition({ x, y })
-  }
-
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 })
-  }
-
-  return (
-    <motion.div
-      style={{
-        x: position.x,
-        y: position.y,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-    >
-      <Button
-        ref={ref}
-        className={`${className} transition-all duration-200`}
-        variant={variant}
-        size={size}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        {...props}
-      >
-        {children}
-      </Button>
-    </motion.div>
-  )
-}
-
-// Trust logo component
-function TrustLogo({ name, className = '' }: { name: string; className?: string }) {
-  return (
-    <motion.div
-      className={`flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300 ${className}`}
-      whileHover={{ scale: 1.1 }}
-      transition={{ duration: 0.2 }}
-    >
-      <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
-        <span className="text-sm font-medium text-white/80">{name}</span>
-      </div>
-    </motion.div>
-  )
-}
+// Removed TrustLogo component - inline simplified version used instead
 
 export default function HomePage() {
   const heroRef = useRef(null)
@@ -231,23 +173,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Enhanced Header with glass morphism */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 w-full z-50 border-b border-white/10 bg-white/90 backdrop-blur-xl"
-      >
+      {/* Clean Header */}
+      <header className="fixed top-0 w-full z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-3 group">
-            <motion.div 
-              className="p-2 bg-gradient-to-br from-black to-gray-800 rounded-xl shadow-lg"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Shield className="h-6 w-6 text-white" />
-            </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent">
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="p-2 bg-black rounded-lg">
+              <Shield className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-lg font-semibold text-black">
               SponsorAssure
             </span>
           </Link>
@@ -255,33 +188,18 @@ export default function HomePage() {
             <Button variant="ghost" size="sm" className="text-gray-600 hover:text-black hidden sm:inline-flex" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <MagneticButton size="sm" className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white shadow-lg" asChild>
+            <Button size="sm" className="bg-black hover:bg-gray-800 text-white" asChild>
               <Link href="/auth/sign-up">Get Started</Link>
-            </MagneticButton>
+            </Button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* HERO SECTION - Massive visual impact */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* Dynamic background elements */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-0 left-0 w-full h-full opacity-20"
-            animate={{
-              background: [
-                "radial-gradient(circle at 20% 80%, #3b82f6 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 20%, #06b6d4 0%, transparent 50%)",
-                "radial-gradient(circle at 40% 40%, #3b82f6 0%, transparent 50%)"
-              ]
-            }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
-          />
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-            animate={{ x: ["-100%", "100%"] }}
-            transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
-          />
+      {/* HERO SECTION - Minimal clean design */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-black">
+        {/* Subtle background accent */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
 
         <motion.div 
@@ -292,76 +210,91 @@ export default function HomePage() {
             variants={heroStagger}
             initial="initial"
             animate="animate"
-            className="max-w-5xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
-            {/* Pre-headline badge */}
-            <motion.div variants={fadeInUp} className="mb-8">
-              <Badge className="bg-white/10 text-white border-white/20 px-6 py-2 text-sm font-medium backdrop-blur-sm">
-                <Zap className="w-4 h-4 mr-2" />
+            {/* Pre-headline badge - simplified */}
+            <motion.div variants={fadeInUp} className="mb-6">
+              <Badge className="bg-white/10 text-white border-white/20 px-4 py-1 text-sm font-normal">
                 Trusted by 1,200+ event professionals
               </Badge>
             </motion.div>
 
-            {/* Oversized headline */}
+            {/* Hero headline - reduced scale */}
             <motion.h1 
               variants={fadeInScale}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[0.9] tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight"
             >
               Professional sponsor
               <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-blue-400">
                 execution
               </span>
             </motion.h1>
 
-            {/* Enhanced subtitle */}
+            {/* Subtitle - reduced scale */}
             <motion.p 
               variants={fadeInUp}
-              className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
             >
               Transform deliverable chaos into partnership certainty.
               <br className="hidden sm:block" />
-              <span className="text-blue-400">Enterprise-grade</span> tracking that scales.
+              Enterprise-grade tracking that scales.
             </motion.p>
 
-            {/* Dual CTA treatment */}
+            {/* CTA buttons - simplified */}
             <motion.div 
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
             >
-              <MagneticButton 
+              <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold shadow-2xl"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium"
                 asChild
               >
-                <Link href="/auth/sign-up" className="flex items-center space-x-3">
-                  <span>Start professional tracking</span>
-                  <ArrowRight className="h-5 w-5" />
+                <Link href="/auth/sign-up" className="flex items-center space-x-2">
+                  <span>Start tracking</span>
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
-              </MagneticButton>
+              </Button>
 
-              <MagneticButton 
+              <Button 
                 variant="outline"
                 size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
+                className="border-white/30 text-white hover:bg-white/10 px-6 py-3 font-medium"
                 asChild
               >
-                <Link href="#demo" className="flex items-center space-x-3">
-                  <Play className="h-5 w-5" />
+                <Link href="#demo" className="flex items-center space-x-2">
+                  <Play className="h-4 w-4" />
                   <span>Watch demo</span>
                 </Link>
-              </MagneticButton>
+              </Button>
             </motion.div>
 
             {/* Trust logos row */}
             <motion.div 
               variants={fadeInUp}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
             >
-              <TrustLogo name="Global Events Co." />
-              <TrustLogo name="Summit Series" />
-              <TrustLogo name="Industry Connect" />
-              <TrustLogo name="Innovation Forum" />
+              <div className="flex items-center justify-center opacity-60">
+                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
+                  <span className="text-sm text-white/80">Global Events Co.</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-center opacity-60">
+                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
+                  <span className="text-sm text-white/80">Summit Series</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-center opacity-60">
+                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
+                  <span className="text-sm text-white/80">Industry Connect</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-center opacity-60">
+                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
+                  <span className="text-sm text-white/80">Innovation Forum</span>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -378,110 +311,80 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* DRAMATIC STATS SECTION */}
-      <section className="py-24 sm:py-32 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-transparent to-blue-50/50"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      {/* STATS SECTION */}
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, threshold: 0.3 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 max-w-6xl mx-auto"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto"
           >
-            <motion.div variants={fadeInScale} className="text-center group">
-              <motion.div 
-                className="mb-4"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
+            <motion.div variants={fadeInScale} className="text-center">
+              <div className="mb-3">
                 <AnimatedCounter 
                   end={1247} 
                   suffix="+" 
                   duration={2000} 
-                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
                 />
-                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                <div className="text-sm text-gray-600">
                   Events powered
                 </div>
-                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-3 rounded-full"></div>
-              </motion.div>
+              </div>
             </motion.div>
 
-            <motion.div variants={fadeInScale} className="text-center group">
-              <motion.div 
-                className="mb-4"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
+            <motion.div variants={fadeInScale} className="text-center">
+              <div className="mb-3">
                 <AnimatedCounter 
                   end={47} 
                   prefix="$" 
                   suffix="M+" 
                   duration={2200} 
-                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
                 />
-                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                <div className="text-sm text-gray-600">
                   Sponsor value protected
                 </div>
-                <div className="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 rounded-full"></div>
-              </motion.div>
+              </div>
             </motion.div>
 
-            <motion.div variants={fadeInScale} className="text-center group">
-              <motion.div 
-                className="mb-4"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
+            <motion.div variants={fadeInScale} className="text-center">
+              <div className="mb-3">
                 <AnimatedCounter 
                   end={99.2} 
                   suffix="%" 
                   duration={2400} 
-                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
                 />
-                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                <div className="text-sm text-gray-600">
                   On-time completion rate
                 </div>
-                <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-3 rounded-full"></div>
-              </motion.div>
+              </div>
             </motion.div>
 
-            <motion.div variants={fadeInScale} className="text-center group">
-              <motion.div 
-                className="mb-4"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
+            <motion.div variants={fadeInScale} className="text-center">
+              <div className="mb-3">
                 <AnimatedCounter 
                   end={127000} 
                   suffix="+" 
                   duration={2600} 
-                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
                 />
-                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                <div className="text-sm text-gray-600">
                   Touchpoints managed
                 </div>
-                <div className="w-16 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mt-3 rounded-full"></div>
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* TESTIMONIAL BREAKTHROUGH - High contrast */}
-      <section className="py-24 sm:py-32 bg-gradient-to-br from-gray-900 to-black text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-20 right-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.3, 0.1] }}
-            transition={{ duration: 6, repeat: Infinity }}
-          />
+      {/* TESTIMONIAL - Clean minimal */}
+      <section className="py-20 sm:py-24 bg-gray-900 text-white relative">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-2xl"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -497,13 +400,10 @@ export default function HomePage() {
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <blockquote className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 leading-tight">
-                "We went from 
-                <span className="text-red-400"> 78% completion</span> to 
-                <span className="text-green-400"> 99.2%</span> overnight.
+              <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-8 leading-relaxed">
+                "We went from 78% completion to 99.2% overnight.
                 <br className="hidden sm:block" />
-                This platform 
-                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> transformed our reputation</span>."
+                This platform transformed our reputation."
               </blockquote>
             </motion.div>
             
@@ -533,8 +433,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RICH FEATURE SHOWCASE */}
-      <section className="py-24 sm:py-32 bg-gradient-to-b from-gray-50 to-white">
+      {/* FEATURES SECTION */}
+      <section className="py-16 sm:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div 
@@ -542,13 +442,12 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center mb-20"
+            className="max-w-3xl mx-auto text-center mb-12"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
-              Enterprise-grade 
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4 leading-tight">
+              Enterprise-grade precision
             </h2>
-            <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
               The professional system your reputation demands
             </p>
           </motion.div>
@@ -559,7 +458,7 @@ export default function HomePage() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
           >
             {[
               {
@@ -612,36 +511,21 @@ export default function HomePage() {
                 transition={{ duration: 0.3 }}
                 className="group"
               >
-                <div className={`relative p-8 rounded-2xl bg-gradient-to-br ${feature.bgGradient} border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden`}>
-                  <div className="relative z-10">
-                    <motion.div 
-                      className={`w-14 h-14 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-6 shadow-lg`}
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <feature.icon className="h-7 w-7 text-white" />
-                    </motion.div>
-                    
-                    <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-gray-700 transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">
-                      {feature.description}
-                    </p>
-                    
-                    <motion.div 
-                      className="flex items-center mt-6 text-gray-700 font-medium"
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <span className="text-sm">Learn more</span>
-                      <ChevronRight className="w-4 h-4 ml-1" />
-                    </motion.div>
+                <div className="p-6 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} rounded-lg flex items-center justify-center mb-4`}>
+                    <feature.icon className="h-6 w-6 text-white" />
                   </div>
                   
-                  {/* Subtle background pattern */}
-                  <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
-                    <feature.icon className="w-full h-full" />
+                  <h3 className="text-xl font-semibold text-black mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                  
+                  <div className="flex items-center mt-4 text-gray-500 text-sm">
+                    <span>Learn more</span>
+                    <ChevronRight className="w-4 h-4 ml-1" />
                   </div>
                 </div>
               </motion.div>
@@ -650,8 +534,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* QUOTE CALLOUT - Rhythm breaker */}
-      <section className="py-20 sm:py-28 bg-white">
+      {/* QUOTE CALLOUT */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -664,9 +548,8 @@ export default function HomePage() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <blockquote className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
-                "Large-scale events demand 
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision systems</span> — 
+              <blockquote className="text-2xl sm:text-3xl font-semibold text-black mb-6 leading-relaxed">
+                "Large-scale events demand precision systems — 
                 our teams now focus on creativity, not compliance."
               </blockquote>
             </motion.div>
@@ -686,14 +569,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MID-PAGE CTA - High impact */}
-      <section className="py-24 sm:py-32 bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"
-            animate={{ x: ["-100%", "100%"] }}
-            transition={{ duration: 4, repeat: Infinity, repeatType: "loop" }}
-          />
+      {/* MID-PAGE CTA - Minimal */}
+      <section className="py-20 sm:py-24 bg-gray-900 text-white relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-32 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -704,62 +583,46 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <motion.h2 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               Professional execution.
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Lasting partnerships.
-              </span>
-            </motion.h2>
+              Lasting partnerships.
+            </h2>
             
-            <p className="text-xl sm:text-2xl mb-12 max-w-3xl mx-auto text-gray-300 leading-relaxed">
+            <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300 leading-relaxed">
               Transform sponsor uncertainty into strategic advantage with enterprise-grade tracking
             </p>
             
-            <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center gap-6"
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <motion.div variants={fadeInUp}>
-                <MagneticButton 
-                  size="lg" 
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-5 text-xl font-semibold shadow-2xl"
-                  asChild
-                >
-                  <Link href="/auth/sign-up" className="flex items-center space-x-3">
-                    <span>Start professional tracking</span>
-                    <ArrowRight className="h-6 w-6" />
-                  </Link>
-                </MagneticButton>
-              </motion.div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium"
+                asChild
+              >
+                <Link href="/auth/sign-up" className="flex items-center space-x-2">
+                  <span>Start tracking</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
 
-              <motion.div variants={fadeInUp}>
-                <MagneticButton 
-                  variant="outline"
-                  size="lg" 
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-5 text-lg font-semibold backdrop-blur-sm"
-                  asChild
-                >
-                  <Link href="#demo" className="flex items-center space-x-3">
-                    <ExternalLink className="h-5 w-5" />
-                    <span>Schedule demo</span>
-                  </Link>
-                </MagneticButton>
-              </motion.div>
-            </motion.div>
+              <Button 
+                variant="outline"
+                size="lg" 
+                className="border-white/30 text-white hover:bg-white/10 px-6 py-3 font-medium"
+                asChild
+              >
+                <Link href="#demo" className="flex items-center space-x-2">
+                  <ExternalLink className="h-4 w-4" />
+                  <span>Schedule demo</span>
+                </Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* FINAL STATS - Compact but powerful */}
-      <section className="py-20 sm:py-24 bg-white">
+      {/* FINAL STATS */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
@@ -768,37 +631,22 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-5xl mx-auto text-center"
           >
-            <motion.div 
-              variants={fadeInScale}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">24/7</div>
-              <div className="text-gray-600 text-lg">Enterprise support ready</div>
-              <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+            <motion.div variants={fadeInScale}>
+              <div className="text-3xl sm:text-4xl font-bold text-black mb-2">24/7</div>
+              <div className="text-gray-600">Enterprise support ready</div>
             </motion.div>
             
-            <motion.div 
-              variants={fadeInScale}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-5xl sm:text-6xl font-bold text-black mb-3 flex items-center justify-center">
+            <motion.div variants={fadeInScale}>
+              <div className="text-3xl sm:text-4xl font-bold text-black mb-2 flex items-center justify-center">
                 <AnimatedCounter end={3} duration={1500} />
-                <span className="ml-2">days</span>
+                <span className="ml-1">days</span>
               </div>
-              <div className="text-gray-600 text-lg">Full setup and training</div>
-              <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-4 rounded-full"></div>
+              <div className="text-gray-600">Full setup and training</div>
             </motion.div>
             
-            <motion.div 
-              variants={fadeInScale}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">100%</div>
-              <div className="text-gray-600 text-lg">Deliverable coverage</div>
-              <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+            <motion.div variants={fadeInScale}>
+              <div className="text-3xl sm:text-4xl font-bold text-black mb-2">100%</div>
+              <div className="text-gray-600">Deliverable coverage</div>
             </motion.div>
           </motion.div>
         </div>
@@ -806,7 +654,7 @@ export default function HomePage() {
 
       {/* ENHANCED FOOTER */}
       <footer className="bg-gradient-to-br from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
