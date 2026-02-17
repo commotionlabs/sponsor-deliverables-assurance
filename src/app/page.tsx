@@ -1,14 +1,35 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Shield, Calendar, FileText, BarChart3, Zap, ArrowRight, Star, Users, TrendingUp } from 'lucide-react'
+import { CheckCircle, Shield, Calendar, FileText, BarChart3, ArrowRight, Star, Users, TrendingUp, Clock, AlertTriangle } from 'lucide-react'
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm">
+      <motion.header 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="p-2 bg-black rounded-lg transition-all group-hover:bg-gray-800">
@@ -29,501 +50,383 @@ export default function HomePage() {
               </Link>
             </Button>
           </div>
-          <div className="sm:hidden">
-            <Button size="sm" className="btn-premium bg-blue-600 hover:bg-blue-700 text-white" asChild>
-              <Link href="/auth/sign-up">Start Free</Link>
-            </Button>
-          </div>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-24 sm:pb-32 text-center">
-          <div className="max-w-5xl mx-auto animate-fade-in">
-            <div className="mb-6 inline-flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              Save sponsor relationships worth $100K+
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-slide-up text-black">
-              Never Miss Another
-              <br />
-              Sponsor Deliverable
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto animate-slide-up">
-              Event teams use SponsorAssure to track deliverables, avoid missed obligations, 
-              and protect sponsor renewals with automated reminders and intelligent risk dashboards.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 animate-slide-up">
+      {/* Hero Stats Section - Sunday App inspired */}
+      <section className="relative py-24 sm:py-32 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="max-w-6xl mx-auto"
+          >
+            {/* Hero Title */}
+            <motion.div variants={fadeInUp} className="text-center mb-20">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-black mb-6 leading-tight tracking-tight">
+                Never miss another
+                <br />
+                sponsor deliverable.
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                The smart way to track deliverables in events
+              </p>
+            </motion.div>
+
+            {/* Key Metrics Grid - Sunday App style */}
+            <motion.div 
+              variants={staggerContainer}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20"
+            >
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
+                  500+
+                </div>
+                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
+                  Event teams
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
+                  98%
+                </div>
+                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
+                  Completion rate
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
+                  $2M+
+                </div>
+                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
+                  Revenue protected
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
+                  24/7
+                </div>
+                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
+                  Monitoring
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div variants={fadeInUp} className="text-center">
               <Button 
                 size="lg" 
-                className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto" 
+                className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Start Free Trial</span>
+                  <span>Start free trial</span>
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="btn-premium text-lg px-8 py-4 border-gray-200 hover:border-gray-300 hover:bg-gray-50 w-full sm:w-auto"
-              >
-                <span className="flex items-center space-x-2">
-                  <span>Watch Demo</span>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                </span>
-              </Button>
-            </div>
-            
-            {/* Enhanced Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 animate-slide-up">
-              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
-                <div className="text-4xl font-bold text-black mb-2">98%</div>
-                <div className="text-sm font-medium text-gray-700">Deliverable completion rate</div>
-                <div className="text-xs text-gray-500 mt-1">Industry-leading accuracy</div>
-              </div>
-              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
-                <div className="text-4xl font-bold text-black mb-2">$50K</div>
-                <div className="text-sm font-medium text-gray-700">Average sponsor value protected</div>
-                <div className="text-xs text-gray-500 mt-1">Per client relationship</div>
-              </div>
-              <div className="premium-card p-6 rounded-lg text-center bg-white border border-gray-200">
-                <div className="text-4xl font-bold text-black mb-2">7</div>
-                <div className="text-sm font-medium text-gray-700">Days to full setup</div>
-                <div className="text-xs text-gray-500 mt-1">Get started instantly</div>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Problem/Solution Section */}
+      {/* Client Quote Section - Sunday App inspired */}
       <section className="relative py-20 sm:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
-              The Cost of Missed Sponsor Deliverables
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8 leading-tight">
+              "There's an art to sponsorship, but no art to missing deliverables."
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              One missed deliverable can cost your event thousands in lost renewals. Here's how we solve that.
+            <p className="text-xl text-gray-600">
+              — Sarah Chen, Events Director, TechConf Global
             </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Problem Card */}
-            <div className="premium-card p-8 rounded-lg border border-red-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-red-50 rounded-lg mr-4">
-                  <div className="text-2xl">⚠️</div>
-                </div>
-                <h3 className="text-2xl font-bold text-red-700">The Problem</h3>
-              </div>
-              <ul className="space-y-4 text-gray-600">
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Sponsor deliverables slip through the cracks</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Manual tracking in spreadsheets consistently fails</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Last-minute scrambles damage sponsor relationships</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Renewals at risk from unmet promises and commitments</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  <span>Team accountability and ownership remains unclear</span>
-                </li>
-              </ul>
-            </div>
-            
-            {/* Solution Card */}
-            <div className="premium-card p-8 rounded-lg border border-green-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-green-50 rounded-lg mr-4">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-green-700">The Solution</h3>
-              </div>
-              <ul className="space-y-4 text-gray-600">
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
-                  <span>Automated deadline tracking with smart reminders</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
-                  <span>Clear owner assignment with responsibility tracking</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
-                  <span>Risk dashboard highlighting urgent deliverables</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
-                  <span>Fulfillment proof for transparent sponsor relations</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
-                  <span>Pre-built templates ensuring consistent delivery</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Problem Statement */}
       <section className="relative py-20 sm:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 sm:mb-20">
-            <div className="mb-6 inline-flex items-center px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-700">
-              <Zap className="h-4 w-4 mr-2" />
-              Powerful Features
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto text-center mb-16"
+          >
+            <div className="inline-flex items-center px-4 py-2 bg-red-50 border border-red-200 rounded-full text-sm font-medium text-red-700 mb-8">
+              <AlertTriangle className="h-4 w-4 mr-2" />
+              The real cost of missed deliverables
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
-              Everything You Need to Protect
-              <br className="hidden sm:block" />
-              Sponsor Relationships
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8 leading-tight">
+              One missed deliverable costs
+              <br />
+              $50K in lost renewals
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Built specifically for event teams managing sponsor deliverables with enterprise-grade reliability
+            <p className="text-xl text-gray-600">
+              Event teams lose sponsor relationships every day. Manual tracking fails. 
+              Deadlines slip. Renewals disappear.
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-blue-50 rounded-lg mr-4">
-                  <Calendar className="h-8 w-8 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Smart Deadline Tracking</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Intelligent reminders and deadline management ensure nothing falls through the cracks with customizable alert schedules.
-              </p>
-            </div>
+          </motion.div>
+
+          {/* Cost Breakdown */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          >
+            <motion.div variants={fadeInUp} className="text-center p-8">
+              <div className="text-4xl font-bold text-red-600 mb-4">73%</div>
+              <div className="text-lg font-medium text-black mb-2">of sponsors</div>
+              <div className="text-gray-600">won't renew after missed deliverables</div>
+            </motion.div>
             
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-blue-50 rounded-lg mr-4">
-                  <BarChart3 className="h-8 w-8 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Risk Dashboard</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Visual risk assessment with real-time insights into overdue, upcoming, and blocked deliverables at a glance.
-              </p>
-            </div>
+            <motion.div variants={fadeInUp} className="text-center p-8">
+              <div className="text-4xl font-bold text-red-600 mb-4">$85K</div>
+              <div className="text-lg font-medium text-black mb-2">average</div>
+              <div className="text-gray-600">sponsor relationship value lost</div>
+            </motion.div>
             
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-blue-50 rounded-lg mr-4">
-                  <FileText className="h-8 w-8 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Package Templates</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Pre-built deliverable templates for Bronze, Silver, Gold, and Platinum sponsor tiers with customization options.
-              </p>
-            </div>
-            
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-green-50 rounded-lg mr-4">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Completion Tracking</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Evidence collection and proof of fulfillment with photo uploads, timestamps, and detailed sponsor reports.
-              </p>
-            </div>
-            
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-gray-50 rounded-lg mr-4">
-                  <Users className="h-8 w-8 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Team Assignment</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Clear ownership and accountability for every deliverable with role-based permissions and collaboration tools.
-              </p>
-            </div>
-            
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-blue-50 rounded-lg mr-4">
-                  <Shield className="h-8 w-8 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-black mb-1">Export Reports</h3>
-                </div>
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                Professional fulfillment reports with branded PDF exports perfect for sponsor relations and renewals.
-              </p>
-            </div>
-          </div>
+            <motion.div variants={fadeInUp} className="text-center p-8">
+              <div className="text-4xl font-bold text-red-600 mb-4">47%</div>
+              <div className="text-lg font-medium text-black mb-2">of teams</div>
+              <div className="text-gray-600">use error-prone spreadsheets</div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Solution Quote */}
       <section className="relative py-20 sm:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6">
-              Simple, Transparent Pricing
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8 leading-tight">
+              "SponsorAssure eliminated our delivery stress. Renewals went from 60% to 95%."
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose the perfect plan for your event team. Start protecting your sponsor relationships today.
+            <p className="text-xl text-gray-600">
+              — Marcus Rodriguez, Director of Partnerships, Summit Series
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Starter Plan */}
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-black mb-2">Starter</h3>
-                <p className="text-gray-600 mb-6">Perfect for single event teams getting started</p>
-                <div className="flex items-baseline mb-2">
-                  <span className="text-4xl font-bold text-black">$299</span>
-                  <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
-                </div>
-                <p className="text-sm text-gray-500">Billed monthly</p>
-              </div>
-              
-              <ul className="space-y-4 mb-8 text-gray-600">
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>1 active event</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Up to 50 sponsors</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>3 team members</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Basic dashboard & analytics</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Email reminders</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>CSV data exports</span>
-                </li>
-              </ul>
-              
-              <Button className="w-full btn-premium" variant="outline" asChild>
-                <Link href="/auth/sign-up?plan=starter">
-                  Start 14-Day Free Trial
-                </Link>
-              </Button>
-            </div>
-            
-            {/* Growth Plan - Featured */}
-            <div className="relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                <div className="px-4 py-1 bg-blue-600 text-white rounded-full text-sm font-medium shadow-lg">
-                  <Star className="h-4 w-4 mr-1 inline fill-current" />
-                  Most Popular
-                </div>
-              </div>
-              <div className="premium-card p-8 rounded-lg border-2 border-blue-200 bg-white shadow-lg">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">Growth</h3>
-                  <p className="text-gray-600 mb-6">Ideal for multi-event operations and growing teams</p>
-                  <div className="flex items-baseline mb-2">
-                    <span className="text-4xl font-bold text-blue-600">$499</span>
-                    <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
-                  </div>
-                  <p className="text-sm text-gray-500">Billed monthly</p>
-                </div>
-                
-                <ul className="space-y-4 mb-8 text-gray-600">
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>5 active events</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Up to 200 sponsors</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>10 team members</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Advanced dashboard & risk analytics</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Custom deliverable templates</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Professional PDF reports</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span>Priority email support</span>
-                  </li>
-                </ul>
-                
-                <Button className="w-full btn-premium bg-blue-600 hover:bg-blue-700 text-white" asChild>
-                  <Link href="/auth/sign-up?plan=growth">
-                    Start 14-Day Free Trial
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            
-            {/* Enterprise Plan */}
-            <div className="premium-card p-8 rounded-lg border border-gray-200 bg-white">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                <p className="text-gray-600 mb-6">For large organizations with complex needs</p>
-                <div className="flex items-baseline mb-2">
-                  <span className="text-4xl font-bold text-black">$999</span>
-                  <span className="text-lg font-medium text-gray-600 ml-2">/month</span>
-                </div>
-                <p className="text-sm text-gray-500">Custom pricing available</p>
-              </div>
-              
-              <ul className="space-y-4 mb-8 text-gray-600">
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Unlimited events</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Unlimited sponsors</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Unlimited team members</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>White-label branding options</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Full API access</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Custom integrations</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span>Dedicated success manager</span>
-                </li>
-              </ul>
-              
-              <Button className="w-full btn-premium" variant="outline" asChild>
-                <Link href="/contact?plan=enterprise">
-                  Contact Sales Team
-                </Link>
-              </Button>
-            </div>
-          </div>
-          
-          {/* Trust indicators */}
-          <div className="text-center mt-16 pt-12 border-t border-gray-200">
-            <p className="text-sm text-gray-500 mb-4">Trusted by event teams worldwide</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              <div className="text-2xl font-bold text-gray-400">EventCorp</div>
-              <div className="text-2xl font-bold text-gray-400">MegaEvents</div>
-              <div className="text-2xl font-bold text-gray-400">ProShow</div>
-              <div className="text-2xl font-bold text-gray-400">EventPlus</div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-20 sm:py-24 bg-black overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Ready to Protect Your
-              <br className="hidden sm:block" />
-              Sponsor Relationships?
+      {/* Key Features Grid - Clean Sunday style */}
+      <section className="relative py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8 leading-tight">
+              Everything you need to protect
+              <br />
+              sponsor relationships
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Join hundreds of event teams using SponsorAssure to ensure deliverable completion 
-              and protect million-dollar sponsor renewals.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-              <Button 
-                size="lg" 
-                className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto" 
-                asChild
-              >
-                <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Start Free 14-Day Trial</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="btn-premium text-lg px-8 py-4 text-white border-gray-600 hover:bg-gray-800 w-full sm:w-auto"
-              >
-                <span className="flex items-center space-x-2">
-                  <span>Schedule Live Demo</span>
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                </span>
-              </Button>
-            </div>
-            
-            {/* Social proof */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-400 text-sm">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>No credit card required</span>
+          </motion.div>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto"
+          >
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Clock className="h-8 w-8 text-blue-600" />
               </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Setup in under 10 minutes</span>
+              <h3 className="text-2xl font-bold text-black mb-4">Smart reminders</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Intelligent alerts before deadlines with customizable timing for every deliverable type.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="h-8 w-8 text-blue-600" />
               </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Cancel anytime</span>
+              <h3 className="text-2xl font-bold text-black mb-4">Risk dashboard</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Real-time visibility into overdue, at-risk, and upcoming deliverables across all events.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Users className="h-8 w-8 text-blue-600" />
               </div>
-            </div>
-          </div>
+              <h3 className="text-2xl font-bold text-black mb-4">Team assignment</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Clear ownership and accountability for every deliverable with automated notifications.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <FileText className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-black mb-4">Package templates</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Pre-built sponsor tier templates that ensure nothing gets missed from Bronze to Platinum.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-black mb-4">Proof tracking</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Evidence collection with photos, timestamps, and detailed fulfillment reports.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Shield className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-black mb-4">Export reports</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Professional branded reports perfect for sponsor relations and renewal discussions.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* More Client Quotes - Sunday App pattern */}
+      <section className="relative py-20 sm:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="space-y-16 max-w-4xl mx-auto"
+          >
+            <motion.div variants={fadeInUp} className="text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
+                "Sponsor renewals increased 40% after implementing SponsorAssure."
+              </h2>
+              <p className="text-xl text-gray-600">
+                — Jennifer Walsh, VP Events, Innovation Summit
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
+                "Large events run smoother — teams focus on execution, not tracking."
+              </h2>
+              <p className="text-xl text-gray-600">
+                — David Park, Event Operations, Global Tech Conference
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">
+                "Delivery completion went from 85% to 99% in three months."
+              </h2>
+              <p className="text-xl text-gray-600">
+                — Lisa Chang, Sponsor Relations Manager, Industry Connect
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Getting Started - Simple like Sunday */}
+      <section className="relative py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold text-black mb-8 leading-tight">
+              From first setup to forever protected.
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              With SponsorAssure, every deliverable becomes the start of stronger relationships. 
+              Teams deliver, sponsors renew, creating a circle of growth and trust.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16"
+          >
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="text-5xl font-bold text-black mb-4">7</div>
+              <div className="text-lg font-medium text-black mb-2">Days</div>
+              <div className="text-gray-600">To full setup and first deliverables tracked</div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="text-5xl font-bold text-black mb-4">24/7</div>
+              <div className="text-lg font-medium text-black mb-2">Support</div>
+              <div className="text-gray-600">Ready when you need help or have questions</div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="text-5xl font-bold text-black mb-4">100%</div>
+              <div className="text-lg font-medium text-black mb-2">Coverage</div>
+              <div className="text-gray-600">Every deliverable tracked and protected</div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <Button 
+              size="lg" 
+              className="btn-premium text-xl px-12 py-6 bg-blue-600 hover:bg-blue-700 text-white" 
+              asChild
+            >
+              <Link href="/auth/sign-up" className="flex items-center space-x-2">
+                <span>Start protecting sponsors</span>
+                <ArrowRight className="h-6 w-6" />
+              </Link>
+            </Button>
+            <p className="text-sm text-gray-500 mt-4">
+              14-day free trial • No credit card required • Setup in minutes
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer - Minimal like Sunday */}
       <footer className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
             {/* Brand */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-3 mb-6 group">
@@ -532,73 +435,53 @@ export default function HomePage() {
                 </div>
                 <span className="text-xl font-bold">SponsorAssure</span>
               </Link>
-              <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
-                Protecting sponsor relationships through intelligent deliverable assurance and risk management.
+              <p className="text-gray-400 leading-relaxed max-w-sm">
+                Protecting sponsor relationships through intelligent deliverable assurance.
               </p>
-              <div className="flex space-x-4">
-                <Link href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
-                  <div className="w-5 h-5 bg-gray-400 rounded"></div>
-                </Link>
-                <Link href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
-                  <div className="w-5 h-5 bg-gray-400 rounded"></div>
-                </Link>
-                <Link href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
-                  <div className="w-5 h-5 bg-gray-400 rounded"></div>
-                </Link>
-              </div>
             </div>
             
             {/* Product */}
             <div>
-              <h3 className="font-semibold text-white mb-6">Product</h3>
+              <h3 className="font-semibold text-white mb-4">Product</h3>
               <ul className="space-y-3 text-gray-400">
-                <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
-                <li><Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                <li><Link href="/demo" className="hover:text-white transition-colors">Live Demo</Link></li>
-                <li><Link href="/integrations" className="hover:text-white transition-colors">Integrations</Link></li>
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="/demo" className="hover:text-white transition-colors">Demo</Link></li>
                 <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
               </ul>
             </div>
             
             {/* Support */}
             <div>
-              <h3 className="font-semibold text-white mb-6">Support</h3>
+              <h3 className="font-semibold text-white mb-4">Support</h3>
               <ul className="space-y-3 text-gray-400">
                 <li><Link href="/help" className="hover:text-white transition-colors">Help Center</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact Support</Link></li>
-                <li><Link href="/status" className="hover:text-white transition-colors flex items-center">
-                  System Status
-                  <div className="w-2 h-2 bg-green-500 rounded-full ml-2"></div>
-                </Link></li>
-                <li><Link href="/api-docs" className="hover:text-white transition-colors">API Documentation</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/api" className="hover:text-white transition-colors">API Docs</Link></li>
               </ul>
             </div>
             
             {/* Company */}
             <div>
-              <h3 className="font-semibold text-white mb-6">Company</h3>
+              <h3 className="font-semibold text-white mb-4">Company</h3>
               <ul className="space-y-3 text-gray-400">
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
               </ul>
             </div>
           </div>
           
-          {/* Bottom section */}
-          <div className="border-t border-gray-800 mt-12 pt-8">
+          {/* Bottom */}
+          <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm mb-4 sm:mb-0">
                 &copy; 2025 SponsorAssure. All rights reserved.
               </p>
-              <div className="flex items-center space-x-6 text-sm text-gray-400">
-                <span>Made with ❤️ for event professionals</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span>All systems operational</span>
-                </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>All systems operational</span>
               </div>
             </div>
           </div>
