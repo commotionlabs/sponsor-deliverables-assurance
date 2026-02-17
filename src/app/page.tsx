@@ -98,7 +98,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: {
   }, [end, duration, isInView, prefersReducedMotion])
 
   return (
-    <div ref={countRef} className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
+    <div ref={countRef} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-2 tracking-tight">
       {prefix}{count.toLocaleString()}{suffix}
     </div>
   )
@@ -129,645 +129,450 @@ function TestimonialPortrait({
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      {/* Compact Header - Sunday style */}
       <motion.header 
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm"
+        className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur-sm"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="p-2 bg-black rounded-lg transition-all group-hover:bg-gray-800">
-              <Shield className="h-6 w-6 text-white" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="p-1.5 bg-black rounded-lg transition-all group-hover:bg-gray-800">
+              <Shield className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-black">
+            <span className="text-lg font-bold text-black">
               SponsorAssure
             </span>
           </Link>
-          <div className="hidden sm:flex items-center space-x-3">
-            <Button variant="ghost" className="btn-premium text-gray-600 hover:text-black" asChild>
+          <div className="flex items-center space-x-2">
+            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-black hidden sm:inline-flex" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-              <Button className="btn-premium bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200" asChild>
-                <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Get Started</span>
-                  <motion.div
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                  </motion.div>
-                </Link>
-              </Button>
-            </motion.div>
+            <Button size="sm" className="bg-black hover:bg-gray-800 text-white" asChild>
+              <Link href="/auth/sign-up">Get Started</Link>
+            </Button>
           </div>
         </div>
       </motion.header>
 
-      {/* Hero Stats Section - Sunday App inspired with enhanced spacing */}
-      <section className="relative py-32 sm:py-40 lg:py-52 bg-white">
+      {/* Compact Hero Lead-in */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            {/* Hero Title with better typography */}
-            <motion.div variants={fadeInUp} className="text-center mb-24 lg:mb-32">
-              <motion.h1 
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-black mb-8 leading-[0.9] tracking-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Every sponsor deliverable.
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Tracked. Delivered. Assured.
-                </span>
-              </motion.h1>
-              <motion.p 
-                className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Precision tracking that transforms sponsor relationships from risk into revenue certainty.
-              </motion.p>
-            </motion.div>
-
-            {/* Key Metrics Grid - Sunday App style with animations */}
-            <motion.div 
-              variants={staggerContainer}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20 mb-24"
-            >
-              <motion.div variants={fadeInUp} className="text-center">
-                <AnimatedCounter end={500} suffix="+" duration={2000} />
-                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
-                  Event teams
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp} className="text-center">
-                <AnimatedCounter end={98} suffix="%" duration={2200} />
-                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
-                  Completion rate
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp} className="text-center">
-                <AnimatedCounter end={2} prefix="$" suffix="M+" duration={2400} />
-                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
-                  Revenue protected
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp} className="text-center">
-                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-black mb-4 tracking-tight">
-                  24/7
-                </div>
-                <div className="text-lg sm:text-xl text-gray-600 leading-tight">
-                  Monitoring
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* CTA with enhanced interaction */}
-            <motion.div variants={fadeInUp} className="text-center">
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -3 }} 
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-                className="inline-block"
-              >
-                <Button 
-                  size="lg" 
-                  className="btn-premium text-xl px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-blue-500 hover:border-blue-600" 
-                  asChild
-                >
-                  <Link href="/auth/sign-up" className="flex items-center space-x-3">
-                    <span>Begin professional tracking</span>
-                    <motion.div
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowRight className="h-6 w-6" />
-                    </motion.div>
-                  </Link>
-                </Button>
-              </motion.div>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.8 }}
-                className="text-sm text-gray-500 mt-4"
-              >
-                Enterprise trial • No commitment required
-              </motion.p>
-            </motion.div>
-
-            {/* Visual separator - Sunday style */}
-            <motion.div 
-              initial={{ opacity: 0, scaleX: 0 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-16 rounded-full"
-            />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 leading-tight">
+              Professional sponsor tracking
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+              Transform deliverable chaos into partnership certainty
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Client Quote Section - Sunday App inspired */}
-      <section className="relative py-28 sm:py-36 bg-gray-50">
+      {/* Dominant Stats Section - Sunday inspired */}
+      <section className="py-16 sm:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-5xl mx-auto"
+          >
+            <motion.div variants={fadeInUp} className="text-center">
+              <AnimatedCounter end={850} suffix="+" duration={2000} />
+              <div className="text-sm sm:text-base text-gray-600 font-medium">
+                Events managed
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <AnimatedCounter end={24} prefix="$" suffix="M+" duration={2200} />
+              <div className="text-sm sm:text-base text-gray-600 font-medium">
+                Sponsor value protected
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <AnimatedCounter end={99} suffix="%" duration={2400} />
+              <div className="text-sm sm:text-base text-gray-600 font-medium">
+                Deliverables completed on time
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-center">
+              <AnimatedCounter end={47000} suffix="+" duration={2600} />
+              <div className="text-sm sm:text-base text-gray-600 font-medium">
+                Sponsor touchpoints managed
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Early Social Proof Strip */}
+      <section className="py-20 sm:py-28 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-10 leading-tight italic">
-                "Exceptional execution demands exceptional tracking. SponsorAssure delivers both."
-              </h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="flex items-center justify-center space-x-4"
-            >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "We've had more sponsor renewals this quarter than in the previous two years combined."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
               <TestimonialPortrait 
-                className="w-16 h-16" 
-                alt="Sarah Chen, Events Director"
+                className="w-12 h-12" 
+                alt="Sarah Kim"
                 imagePath="/images/testimonials/sarah-chen.jpg"
               />
               <div className="text-left">
-                <p className="text-xl font-medium text-gray-900">Sarah Chen</p>
-                <p className="text-lg text-gray-600">Events Director, TechConf Global</p>
+                <p className="font-medium text-gray-900">Sarah Kim, Summit Events</p>
               </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Problem Statement */}
-      <section className="relative py-28 sm:py-36 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center mb-16"
-          >
-            <div className="inline-flex items-center px-4 py-2 bg-red-50 border border-red-200 rounded-full text-sm font-medium text-red-700 mb-8">
-              <AlertTriangle className="h-4 w-4 mr-2" />
-              The real cost of missed deliverables
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              Every missed deliverable
-              <br />
-              <span className="text-red-600">erodes trust permanently</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              Premium sponsors expect flawless execution. Manual processes create liability. 
-              Professional tracking builds lasting partnerships.
-            </p>
-          </motion.div>
-
-          {/* Cost Breakdown with animated counters */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            <motion.div variants={fadeInUp} className="text-center p-8">
-              <div className="text-4xl font-bold text-red-600 mb-4">
-                <AnimatedCounter end={73} suffix="%" duration={1800} />
-              </div>
-              <div className="text-lg font-medium text-black mb-2">of sponsors</div>
-              <div className="text-gray-600">won't renew after missed deliverables</div>
-            </motion.div>
-            
-            <motion.div variants={fadeInUp} className="text-center p-8">
-              <div className="text-4xl font-bold text-red-600 mb-4">
-                <AnimatedCounter end={85} prefix="$" suffix="K" duration={2000} />
-              </div>
-              <div className="text-lg font-medium text-black mb-2">average</div>
-              <div className="text-gray-600">sponsor relationship value lost</div>
-            </motion.div>
-            
-            <motion.div variants={fadeInUp} className="text-center p-8">
-              <div className="text-4xl font-bold text-red-600 mb-4">
-                <AnimatedCounter end={47} suffix="%" duration={1600} />
-              </div>
-              <div className="text-lg font-medium text-black mb-2">of teams</div>
-              <div className="text-gray-600">use error-prone spreadsheets</div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Solution Quote */}
-      <section className="relative py-24 sm:py-32 bg-gray-50">
+      {/* Quote/Proof Section */}
+      <section className="py-20 sm:py-28 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-10 leading-tight italic">
-                "From operational chaos to partnership excellence. SponsorAssure transformed our 
-                <span className="text-green-600">renewal rate to 95%</span>."
-              </h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="flex items-center justify-center space-x-4"
-            >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "When we implemented SponsorAssure across 15 events, sponsor satisfaction scores increased 
+              <span className="text-blue-600"> 35% consistently</span>."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
               <TestimonialPortrait 
-                className="w-16 h-16" 
-                alt="Marcus Rodriguez, Director of Partnerships"
+                className="w-12 h-12" 
+                alt="Marcus Rodriguez"
                 imagePath="/images/testimonials/marcus-rodriguez.jpg"
               />
               <div className="text-left">
-                <p className="text-xl font-medium text-gray-900">Marcus Rodriguez</p>
-                <p className="text-lg text-gray-600">Director of Partnerships, Summit Series</p>
+                <p className="font-medium text-gray-900">Marcus Rodriguez, Director of Partnerships, Summit Series</p>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Feature Section */}
+      <section className="py-20 sm:py-28 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-16"
+          >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "Sponsors expect premium execution — no room for missed deliverables."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
+              <TestimonialPortrait 
+                className="w-12 h-12" 
+                alt="David Park"
+                imagePath="/images/testimonials/david-park.jpg"
+              />
+              <div className="text-left">
+                <p className="font-medium text-gray-900">David Park, Event Operations, Global Tech Conference</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Feature Grid */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          >
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <Clock className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Precision alerts</h3>
+              <p className="text-gray-600">Intelligent deadline management with executive-level timing controls.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <BarChart3 className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Executive dashboard</h3>
+              <p className="text-gray-600">Real-time portfolio visibility across all events and partnerships.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <Users className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Team coordination</h3>
+              <p className="text-gray-600">Crystal-clear accountability with intelligent workflow automation.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <FileText className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Tier frameworks</h3>
+              <p className="text-gray-600">Enterprise-calibrated sponsorship structures from basic to flagship tier.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <CheckCircle className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Documentation</h3>
+              <p className="text-gray-600">Comprehensive evidence systems with timestamped verification.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="text-left group">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
+                <Shield className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3">Strategic reports</h3>
+              <p className="text-gray-600">Executive-grade portfolios designed for C-level presentations.</p>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Key Features Grid - Clean Sunday style */}
-      <section className="relative py-24 sm:py-32 bg-white">
+      {/* Mid-page Testimonial */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "Large-scale events demand precision systems — our teams now focus on creativity, not compliance."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
+              <TestimonialPortrait 
+                className="w-12 h-12" 
+                alt="Lisa Chang"
+                imagePath="/images/testimonials/lisa-chang.jpg"
+              />
+              <div className="text-left">
+                <p className="font-medium text-gray-900">Lisa Chang, Sponsor Relations Manager, Industry Connect</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Large Feature Callout - Sunday style */}
+      <section className="py-24 sm:py-32 bg-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              Enterprise-grade assurance for
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              "There's an art to event management, 
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                high-value partnerships
-              </span>
+              but no art to 
+              <span className="text-blue-400"> tracking deliverables</span>."
             </h2>
-          </motion.div>
-
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto"
-          >
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Clock className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Precision alerts
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Intelligent deadline management with executive-level timing controls for every deliverable tier.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <BarChart3 className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Executive oversight
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Strategic command center with real-time portfolio visibility across all events and partnerships.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Users className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Seamless delegation
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Crystal-clear accountability chains with intelligent workflow automation and escalation protocols.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <FileText className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Tier-based frameworks
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Enterprise-calibrated sponsorship structures from foundational to flagship tier execution standards.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <CheckCircle className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Forensic documentation
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Comprehensive evidence systems with timestamped verification and audit-ready fulfillment records.
-              </p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center group">
-              <motion.div 
-                className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-blue-100 group-hover:scale-110"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Shield className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Strategic reporting
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Executive-grade deliverable portfolios designed for C-level sponsor renewal presentations.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* More Client Quotes - Sunday App pattern */}
-      <section className="relative py-24 sm:py-32 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="space-y-20 max-w-5xl mx-auto"
-          >
-            <motion.div variants={fadeInUp} className="text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Professional-grade tracking elevated our sponsor relationships. Renewals increased <span className="text-green-600">40%</span> immediately."
-              </h2>
-              <div className="flex items-center justify-center space-x-4">
-                <TestimonialPortrait 
-                  className="w-14 h-14" 
-                  alt="Jennifer Walsh, VP Events"
-                  imagePath="/images/testimonials/jennifer-walsh.jpg"
-                />
-                <div className="text-left">
-                  <p className="text-lg font-medium text-gray-900">Jennifer Walsh</p>
-                  <p className="text-gray-600">VP Events, Innovation Summit</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Large-scale events demand precision systems. Our teams now focus on creativity, not compliance."
-              </h2>
-              <div className="flex items-center justify-center space-x-4">
-                <TestimonialPortrait 
-                  className="w-14 h-14" 
-                  alt="David Park, Event Operations"
-                  imagePath="/images/testimonials/david-park.jpg"
-                />
-                <div className="text-left">
-                  <p className="text-lg font-medium text-gray-900">David Park</p>
-                  <p className="text-gray-600">Event Operations, Global Tech Conference</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Flawless execution builds lasting partnerships. <span className="text-blue-600">99% completion rate</span> speaks for itself."
-              </h2>
-              <div className="flex items-center justify-center space-x-4">
-                <TestimonialPortrait 
-                  className="w-14 h-14" 
-                  alt="Lisa Chang, Sponsor Relations Manager"
-                  imagePath="/images/testimonials/lisa-chang.jpg"
-                />
-                <div className="text-left">
-                  <p className="text-lg font-medium text-gray-900">Lisa Chang</p>
-                  <p className="text-gray-600">Sponsor Relations Manager, Industry Connect</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Getting Started - Simple like Sunday */}
-      <section className="relative py-24 sm:py-32 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              Professional execution.
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-                Lifetime partnerships.
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Transform operational uncertainty into strategic advantage. When execution meets expectation, 
-              sponsors become partners—and partnerships become growth engines.
+            <p className="text-xl sm:text-2xl text-gray-300 mb-8">
+              — Jennifer Walsh, VP Events, Innovation Summit
             </p>
           </motion.div>
+        </div>
+      </section>
 
+      {/* Alternating Quote/Proof */}
+      <section className="py-20 sm:py-28 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16"
-          >
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="text-5xl font-bold text-black mb-4">
-                <AnimatedCounter end={7} duration={1500} />
-              </div>
-              <div className="text-lg font-medium text-black mb-2">Days</div>
-              <div className="text-gray-600">To full setup and first deliverables tracked</div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="text-5xl font-bold text-black mb-4">24/7</div>
-              <div className="text-lg font-medium text-black mb-2">Support</div>
-              <div className="text-gray-600">Ready when you need help or have questions</div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="text-5xl font-bold text-black mb-4">
-                <AnimatedCounter end={100} suffix="%" duration={2000} />
-              </div>
-              <div className="text-lg font-medium text-black mb-2">Coverage</div>
-              <div className="text-gray-600">Every deliverable tracked and protected</div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "Enterprise sponsors can coordinate how they want — <span className="text-green-600">teams focus on execution</span>."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
+              <TestimonialPortrait 
+                className="w-12 h-12" 
+                alt="Jennifer Walsh"
+                imagePath="/images/testimonials/jennifer-walsh.jpg"
+              />
+              <div className="text-left">
+                <p className="font-medium text-gray-900">Jennifer Walsh, VP Events, Innovation Summit</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Another Quote */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
+              "Completion rates went from <span className="text-red-600">78%</span> to <span className="text-green-600">99%</span> on average."
+            </blockquote>
+            <div className="flex items-center justify-center space-x-3">
+              <TestimonialPortrait 
+                className="w-12 h-12" 
+                alt="Michael Torres"
+                imagePath="/images/testimonials/david-park.jpg"
+              />
+              <div className="text-left">
+                <p className="font-medium text-gray-900">Michael Torres, Owner, Meridian Events</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Concise Mid-Page CTA Block */}
+      <section className="py-24 sm:py-32 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center"
           >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              Professional execution.
+              <br />
+              Lasting partnerships.
+            </h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+              Transform sponsor uncertainty into strategic advantage
+            </p>
             <motion.div 
-              whileHover={{ scale: 1.05, y: -3 }} 
+              whileHover={{ scale: 1.05 }} 
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="inline-block"
             >
               <Button 
                 size="lg" 
-                className="btn-premium text-xl px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-blue-500 hover:border-blue-600" 
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                 asChild
               >
-                <Link href="/auth/sign-up" className="flex items-center space-x-3">
-                  <span>Elevate sponsor relations</span>
-                  <motion.div
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowRight className="h-6 w-6" />
-                  </motion.div>
+                <Link href="/auth/sign-up" className="flex items-center space-x-2">
+                  <span>Start professional tracking</span>
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
             </motion.div>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-              className="text-sm text-gray-500 mt-6"
-            >
-              Professional trial • Executive setup • White-glove onboarding
-            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Footer - Minimal like Sunday */}
+      {/* Final Simple Stats - Sunday style */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto text-center"
+          >
+            <motion.div variants={fadeInUp}>
+              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">24/7</div>
+              <div className="text-gray-600">Support ready for you</div>
+            </motion.div>
+            
+            <motion.div variants={fadeInUp}>
+              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">
+                <AnimatedCounter end={7} duration={1500} />
+                <span> days</span>
+              </div>
+              <div className="text-gray-600">To receive setup and be ready</div>
+            </motion.div>
+            
+            <motion.div variants={fadeInUp}>
+              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">100%</div>
+              <div className="text-gray-600">Deliverable coverage</div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Minimal Footer - Sunday inspired */}
       <footer className="bg-gray-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             {/* Brand */}
-            <div className="lg:col-span-1">
-              <Link href="/" className="flex items-center space-x-3 mb-6 group">
-                <div className="p-2 bg-white rounded-lg transition-all group-hover:bg-gray-200">
-                  <Shield className="h-6 w-6 text-black" />
+            <div>
+              <Link href="/" className="flex items-center space-x-2 mb-4">
+                <div className="p-1.5 bg-white rounded-lg">
+                  <Shield className="h-4 w-4 text-black" />
                 </div>
-                <span className="text-xl font-bold">SponsorAssure</span>
+                <span className="font-bold">SponsorAssure</span>
               </Link>
-              <p className="text-gray-400 leading-relaxed max-w-sm">
-                Protecting sponsor relationships through intelligent deliverable assurance.
-              </p>
             </div>
             
-            {/* Product */}
+            {/* Links */}
             <div>
-              <h3 className="font-semibold text-white mb-4">Product</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                <li><Link href="/demo" className="hover:text-white transition-colors">Demo</Link></li>
-                <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><Link href="/features" className="hover:text-white">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white">Pricing</Link></li>
+                <li><Link href="/demo" className="hover:text-white">Demo</Link></li>
               </ul>
             </div>
             
-            {/* Support */}
             <div>
-              <h3 className="font-semibold text-white mb-4">Support</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/help" className="hover:text-white transition-colors">Help Center</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link href="/api" className="hover:text-white transition-colors">API Docs</Link></li>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><Link href="/help" className="hover:text-white">Help</Link></li>
+                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
+                <li><Link href="/api" className="hover:text-white">API</Link></li>
               </ul>
             </div>
             
-            {/* Company */}
             <div>
-              <h3 className="font-semibold text-white mb-4">Company</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><Link href="/about" className="hover:text-white">About</Link></li>
+                <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
               </ul>
             </div>
           </div>
           
           {/* Bottom */}
-          <div className="border-t border-gray-800 pt-8">
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <p className="text-gray-400 text-sm mb-4 sm:mb-0">
-                &copy; 2025 SponsorAssure. All rights reserved.
-              </p>
-              <div className="flex items-center space-x-2 text-sm text-gray-400">
+          <div className="border-t border-gray-800 pt-6">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
+              <p>&copy; 2025 SponsorAssure. All rights reserved.</p>
+              <div className="flex items-center space-x-2 mt-2 sm:mt-0">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span>All systems operational</span>
               </div>
