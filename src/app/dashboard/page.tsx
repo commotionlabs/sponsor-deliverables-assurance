@@ -118,7 +118,7 @@ export default async function DashboardPage() {
     <div className="space-y-8 max-w-7xl animate-fade-in">
       {/* Header */}
       <div className="space-y-2">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+        <h1 className="text-3xl sm:text-4xl font-bold text-black">
           Welcome back! 👋
         </h1>
         <p className="text-lg text-gray-600">
@@ -128,53 +128,53 @@ export default async function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="glass-card p-6 rounded-2xl border hover:border-emerald-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border border-gray-200 bg-white">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Active Sponsors</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardData.stats.totalSponsors}</p>
+              <p className="text-3xl font-bold text-black">{dashboardData.stats.totalSponsors}</p>
               <p className="text-xs text-gray-500">Total across all events</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl group-hover:from-blue-200 group-hover:to-emerald-200 transition-all">
+            <div className="p-3 bg-blue-50 rounded-lg">
               <Building2 className="h-6 w-6 text-blue-600" />
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-purple-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border border border-gray-200 bg-white ">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Active Deliverables</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardData.stats.activeDeliverables}</p>
+              <p className="text-3xl font-bold text-black">{dashboardData.stats.activeDeliverables}</p>
               <p className="text-xs text-gray-500">Pending and in-progress</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-teal-100 to-pink-100 rounded-xl group-hover:from-teal-200 group-hover:to-pink-200 transition-all">
+            <div className="p-3 bg-blue-50 rounded-lg border border-gray-200 bg-white">
               <FileText className="h-6 w-6 text-purple-600" />
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-green-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border border border-gray-200 bg-white ">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Completed This Month</p>
               <p className="text-3xl font-bold text-green-600">{dashboardData.stats.completedThisMonth}</p>
               <p className="text-xs text-gray-500">Successfully delivered</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl group-hover:from-green-200 group-hover:to-emerald-200 transition-all">
+            <div className="p-3 bg-blue-50 rounded-lg border border-gray-200 bg-white">
               <CheckCircle className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-red-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border border border-gray-200 bg-white ">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Overdue Items</p>
               <p className="text-3xl font-bold text-red-600">{dashboardData.stats.overdueCount}</p>
               <p className="text-xs text-gray-500">Need immediate attention</p>
             </div>
-            <div className="p-3 bg-gradient-to-br from-red-100 to-amber-200 rounded-xl group-hover:from-red-200 group-hover:to-amber-300 transition-all">
+            <div className="p-3 bg-blue-50 rounded-lg border border-gray-200 bg-white">
               <AlertTriangle className="h-6 w-6 text-red-600" />
             </div>
           </div>
@@ -183,13 +183,13 @@ export default async function DashboardPage() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
         {/* Upcoming Deliverables */}
-        <div className="glass-card rounded-2xl border hover:border-emerald-200/50 transition-all">
+        <div className="premium-card rounded-lg border border border-gray-200 bg-white transition-all">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center space-x-3 mb-2">
-              <div className="p-2 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl">
+              <div className="p-2 bg-blue-50 rounded-lg border border-gray-200 bg-white">
                 <Clock className="h-5 w-5 text-emerald-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Upcoming Deliverables</h3>
+              <h3 className="text-xl font-bold text-black">Upcoming Deliverables</h3>
             </div>
             <p className="text-gray-600 text-sm">
               Deliverables due in the next 7 days
@@ -201,17 +201,17 @@ export default async function DashboardPage() {
                 <div className="p-4 bg-green-50 rounded-full w-fit mx-auto mb-4">
                   <CheckCircle className="h-12 w-12 text-green-500" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">All caught up!</h4>
+                <h4 className="font-semibold text-black mb-2">All caught up!</h4>
                 <p className="text-gray-500">No urgent deliverables in the next 7 days.</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {dashboardData.upcomingDeliverables.map((deliverable: any) => (
-                  <div key={deliverable.id} className="p-4 bg-white/60 border border-gray-100 rounded-xl hover:border-emerald-200/50 hover:shadow-sm transition-all">
+                  <div key={deliverable.id} className="p-4 bg-white/60 border border-gray-100 rounded-xl border border-gray-200 bg-white hover:shadow-sm transition-all">
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-900 truncate mb-1">
+                        <p className="font-semibold text-black truncate mb-1">
                           {deliverable.title}
                         </p>
                         <p className="text-sm text-gray-600 mb-3">
@@ -229,7 +229,7 @@ export default async function DashboardPage() {
                     </div>
                   </div>
                 ))}
-                <Button variant="outline" className="w-full btn-modern mt-4 h-12 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-50/50" asChild>
+                <Button variant="outline" className="w-full btn-premium mt-4 h-12 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-50/50" asChild>
                   <Link href="/dashboard/deliverables">View All Deliverables</Link>
                 </Button>
               </div>
@@ -238,13 +238,13 @@ export default async function DashboardPage() {
         </div>
 
         {/* Recent Activity */}
-        <div className="glass-card rounded-2xl border hover:border-purple-200/50 transition-all">
+        <div className="premium-card rounded-lg border border border-gray-200 bg-white transition-all">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center space-x-3 mb-2">
-              <div className="p-2 bg-gradient-to-br from-teal-100 to-pink-100 rounded-xl">
+              <div className="p-2 bg-blue-50 rounded-lg border border-gray-200 bg-white">
                 <TrendingUp className="h-5 w-5 text-purple-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Recent Activity</h3>
+              <h3 className="text-xl font-bold text-black">Recent Activity</h3>
             </div>
             <p className="text-gray-600 text-sm">
               Latest updates and changes
@@ -256,7 +256,7 @@ export default async function DashboardPage() {
                 <div className="p-4 bg-gray-50 rounded-full w-fit mx-auto mb-4">
                   <TrendingUp className="h-12 w-12 text-gray-400" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">No activity yet</h4>
+                <h4 className="font-semibold text-black mb-2">No activity yet</h4>
                 <p className="text-gray-500">Recent actions will appear here.</p>
               </div>
             ) : (
@@ -265,7 +265,7 @@ export default async function DashboardPage() {
                   <div key={activity.id} className="flex items-start space-x-3 p-3 bg-white/60 border border-gray-100 rounded-xl">
                     <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 mb-1">
+                      <p className="text-sm font-medium text-black mb-1">
                         {activity.action} {activity.resource_type}
                         {activity.details?.name && ` "${activity.details.name}"`}
                       </p>
@@ -282,28 +282,28 @@ export default async function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="glass-card rounded-2xl border hover:border-emerald-200/50 transition-all">
+      <div className="premium-card rounded-lg border border border-gray-200 bg-white transition-all">
         <div className="p-6 border-b border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Quick Actions</h3>
+          <h3 className="text-xl font-bold text-black mb-2">Quick Actions</h3>
           <p className="text-gray-600 text-sm">
             Common tasks to get you started
           </p>
         </div>
         <div className="p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Button className="h-14 btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
+            <Button className="h-14 btn-premium bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
               <Link href="/dashboard/events/new" className="flex items-center space-x-2">
                 <Calendar className="h-5 w-5" />
                 <span className="font-medium">Create New Event</span>
               </Link>
             </Button>
-            <Button variant="outline" className="h-14 btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
+            <Button variant="outline" className="h-14 btn-premium border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
               <Link href="/dashboard/sponsors/new" className="flex items-center space-x-2">
                 <Building2 className="h-5 w-5" />
                 <span className="font-medium">Add Sponsor</span>
               </Link>
             </Button>
-            <Button variant="outline" className="h-14 btn-modern border-gray-200 hover:border-red-200 hover:bg-red-50/50" asChild>
+            <Button variant="outline" className="h-14 btn-premium border-gray-200 hover:border-red-200 hover:bg-red-50/50" asChild>
               <Link href="/dashboard/risk" className="flex items-center space-x-2">
                 <AlertTriangle className="h-5 w-5" />
                 <span className="font-medium">View Risk Dashboard</span>

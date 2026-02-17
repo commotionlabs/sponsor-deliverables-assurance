@@ -77,13 +77,13 @@ export default function SignUpPage() {
         <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
         <div className="absolute top-0 right-1/3 w-72 h-72 bg-gradient-to-r from-green-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
         
-        <div className="relative glass-card rounded-2xl p-8 w-full max-w-md animate-scale-in">
+        <div className="relative premium-card rounded-lg p-8 w-full max-w-md animate-scale-in">
           <div className="text-center space-y-6">
             <div className="p-4 bg-green-50 rounded-full w-fit mx-auto">
               <Mail className="h-12 w-12 text-green-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Check your email</h1>
+              <h1 className="text-3xl font-bold text-black mb-2">Check your email</h1>
               <p className="text-gray-600 mb-4">
                 We've sent a confirmation link to
               </p>
@@ -99,7 +99,7 @@ export default function SignUpPage() {
                 <li>3. Complete your account setup</li>
               </ol>
             </div>
-            <Button variant="outline" className="w-full btn-modern" asChild>
+            <Button variant="outline" className="w-full btn-premium" asChild>
               <Link href="/auth/sign-in">Back to sign in</Link>
             </Button>
           </div>
@@ -125,9 +125,9 @@ export default function SignUpPage() {
           </span>
         </Link>
 
-        <div className="glass-card rounded-2xl p-8 border hover:border-emerald-200/50 transition-all">
+        <div className="premium-card rounded-lg p-8 border hover:border-emerald-200/50 transition-all">
           <div className="space-y-2 mb-8 text-center">
-            <h1 className="text-3xl font-bold text-gray-900">Create your account</h1>
+            <h1 className="text-3xl font-bold text-black">Create your account</h1>
             <p className="text-gray-600">
               Start protecting your sponsor relationships today with a 14-day free trial
             </p>
@@ -204,7 +204,7 @@ export default function SignUpPage() {
 
               <Button 
                 type="submit" 
-                className="w-full h-12 btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 font-medium" 
+                className="w-full h-12 btn-premium bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 font-medium" 
                 disabled={loading}
               >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -223,7 +223,7 @@ export default function SignUpPage() {
 
             <Button 
               variant="outline" 
-              className="w-full h-12 btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 font-medium" 
+              className="w-full h-12 btn-premium border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 font-medium" 
               onClick={handleGoogleSignUp}
               disabled={loading}
             >

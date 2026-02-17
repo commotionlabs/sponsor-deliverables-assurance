@@ -65,12 +65,12 @@ function DeliverableCard({ deliverable }: { deliverable: any }) {
   const daysUntilDue = Math.ceil((new Date(deliverable.due_date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
 
   return (
-    <div className={`glass-card p-6 rounded-2xl border transition-all hover:shadow-lg ${
+    <div className={`premium-card p-6 rounded-lg border transition-all hover:shadow-lg ${
       isOverdue ? 'border-red-200/80 bg-red-50/50' : 'hover:border-emerald-200/50'
     }`}>
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-semibold text-gray-900 truncate mb-2">{deliverable.title}</h3>
+          <h3 className="text-lg font-semibold text-black truncate mb-2">{deliverable.title}</h3>
           <div className="flex flex-wrap items-center gap-2">
             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadgeColor(deliverable.status)}`}>
               {deliverable.status.replace('_', ' ')}
@@ -177,13 +177,13 @@ export default async function DeliverablesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">Deliverables</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-black">Deliverables</h1>
           <p className="text-lg text-gray-600">
             Track and manage all sponsor deliverables across your events
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
+          <Button variant="outline" className="btn-premium border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
             <Link href="/api/export/deliverables" className="flex items-center space-x-2">
               <Download className="h-4 w-4" />
               <span>Export CSV</span>
@@ -194,11 +194,11 @@ export default async function DeliverablesPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="glass-card p-6 rounded-2xl border hover:border-blue-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border hover:border-blue-200/50 transition-all group">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Total Deliverables</p>
-              <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+              <p className="text-3xl font-bold text-black">{stats.total}</p>
             </div>
             <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-xl group-hover:from-blue-200 group-hover:to-emerald-200 transition-all">
               <FileText className="h-6 w-6 text-blue-600" />
@@ -206,7 +206,7 @@ export default async function DeliverablesPage() {
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-green-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border hover:border-green-200/50 transition-all group">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Completed</p>
@@ -221,7 +221,7 @@ export default async function DeliverablesPage() {
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-red-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border hover:border-red-200/50 transition-all group">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Overdue</p>
@@ -234,7 +234,7 @@ export default async function DeliverablesPage() {
           </div>
         </div>
 
-        <div className="glass-card p-6 rounded-2xl border hover:border-orange-200/50 transition-all group">
+        <div className="premium-card p-6 rounded-lg border hover:border-orange-200/50 transition-all group">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium text-gray-600">Due Soon</p>
@@ -249,9 +249,9 @@ export default async function DeliverablesPage() {
       </div>
 
       {/* Filters */}
-      <div className="glass-card rounded-2xl border hover:border-emerald-200/50 transition-all">
+      <div className="premium-card rounded-lg border hover:border-emerald-200/50 transition-all">
         <div className="p-6 border-b border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900">Filter & Search</h3>
+          <h3 className="text-xl font-bold text-black">Filter & Search</h3>
         </div>
         <div className="p-6">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -264,7 +264,7 @@ export default async function DeliverablesPage() {
                 />
               </div>
             </div>
-            <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 h-12 px-6">
+            <Button variant="outline" className="btn-premium border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50 h-12 px-6">
               <Filter className="h-4 w-4 mr-2" />
               Filter
             </Button>
@@ -274,19 +274,19 @@ export default async function DeliverablesPage() {
 
       {/* Deliverables List */}
       {deliverables.length === 0 ? (
-        <div className="glass-card rounded-2xl border text-center py-16">
+        <div className="premium-card rounded-lg border text-center py-16">
           <div className="p-4 bg-blue-50 rounded-full w-fit mx-auto mb-6">
             <FileText className="h-12 w-12 text-blue-500" />
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-3">No deliverables yet</h3>
+          <h3 className="text-xl font-bold text-black mb-3">No deliverables yet</h3>
           <p className="text-gray-600 mb-8 max-w-md mx-auto">
             Deliverables will appear here when you add sponsors to your events
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="btn-modern bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
+            <Button className="btn-premium bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25" asChild>
               <Link href="/dashboard/events/new">Create Event</Link>
             </Button>
-            <Button variant="outline" className="btn-modern border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
+            <Button variant="outline" className="btn-premium border-gray-200 hover:border-emerald-200 hover:bg-emerald-50/50" asChild>
               <Link href="/dashboard/sponsors/new">Add Sponsor</Link>
             </Button>
           </div>
