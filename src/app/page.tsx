@@ -104,22 +104,24 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: {
   )
 }
 
-// Placeholder image component with gradient backgrounds
-function PlaceholderImage({ 
+// Professional testimonial portrait component
+function TestimonialPortrait({ 
   className, 
   alt, 
-  gradient = "from-blue-500 to-purple-600" 
+  imagePath
 }: { 
   className?: string; 
   alt: string; 
-  gradient?: string; 
+  imagePath: string;
 }) {
   return (
-    <div className={`bg-gradient-to-br ${gradient} rounded-xl ${className || ''}`}>
-      {/* TODO: Replace with actual images - placeholder gradient for legal safety */}
-      <div className="w-full h-full flex items-center justify-center text-white/20 font-medium">
-        {alt}
-      </div>
+    <div className={`relative overflow-hidden rounded-full ${className || ''}`}>
+      <img 
+        src={imagePath} 
+        alt={alt}
+        className="w-full h-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
     </div>
   )
 }
@@ -166,7 +168,7 @@ export default function HomePage() {
       </motion.header>
 
       {/* Hero Stats Section - Sunday App inspired with enhanced spacing */}
-      <section className="relative py-32 sm:py-40 lg:py-48 bg-white">
+      <section className="relative py-32 sm:py-40 lg:py-52 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
@@ -182,10 +184,10 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Never miss another
+                Every sponsor deliverable.
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  sponsor deliverable.
+                  Tracked. Delivered. Assured.
                 </span>
               </motion.h1>
               <motion.p 
@@ -194,7 +196,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                The smart way to track deliverables in events
+                Precision tracking that transforms sponsor relationships from risk into revenue certainty.
               </motion.p>
             </motion.div>
 
@@ -237,27 +239,36 @@ export default function HomePage() {
             {/* CTA with enhanced interaction */}
             <motion.div variants={fadeInUp} className="text-center">
               <motion.div 
-                whileHover={{ scale: 1.05, y: -2 }} 
+                whileHover={{ scale: 1.05, y: -3 }} 
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
+                className="inline-block"
               >
                 <Button 
                   size="lg" 
-                  className="btn-premium text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-2xl transition-all duration-300" 
+                  className="btn-premium text-xl px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-blue-500 hover:border-blue-600" 
                   asChild
                 >
-                  <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                    <span>Start free trial</span>
+                  <Link href="/auth/sign-up" className="flex items-center space-x-3">
+                    <span>Begin professional tracking</span>
                     <motion.div
                       initial={{ x: 0 }}
                       whileHover={{ x: 4 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <ArrowRight className="h-5 w-5" />
+                      <ArrowRight className="h-6 w-6" />
                     </motion.div>
                   </Link>
                 </Button>
               </motion.div>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+                className="text-sm text-gray-500 mt-4"
+              >
+                Enterprise trial • No commitment required
+              </motion.p>
             </motion.div>
 
             {/* Visual separator - Sunday style */}
@@ -273,7 +284,7 @@ export default function HomePage() {
       </section>
 
       {/* Client Quote Section - Sunday App inspired */}
-      <section className="relative py-24 sm:py-32 bg-gray-50">
+      <section className="relative py-28 sm:py-36 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
@@ -289,7 +300,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-10 leading-tight italic">
-                "There's an art to sponsorship, but no art to missing deliverables."
+                "Exceptional execution demands exceptional tracking. SponsorAssure delivers both."
               </h2>
             </motion.div>
             <motion.div
@@ -299,10 +310,10 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: 0.6 }}
               className="flex items-center justify-center space-x-4"
             >
-              <PlaceholderImage 
+              <TestimonialPortrait 
                 className="w-16 h-16" 
-                alt="Sarah Chen avatar"
-                gradient="from-purple-500 to-pink-500"
+                alt="Sarah Chen, Events Director"
+                imagePath="/images/testimonials/sarah-chen.jpg"
               />
               <div className="text-left">
                 <p className="text-xl font-medium text-gray-900">Sarah Chen</p>
@@ -314,7 +325,7 @@ export default function HomePage() {
       </section>
 
       {/* Problem Statement */}
-      <section className="relative py-24 sm:py-32 bg-white">
+      <section className="relative py-28 sm:py-36 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
@@ -328,13 +339,13 @@ export default function HomePage() {
               The real cost of missed deliverables
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              One missed deliverable costs
+              Every missed deliverable
               <br />
-              <span className="text-red-600">$50K in lost renewals</span>
+              <span className="text-red-600">erodes trust permanently</span>
             </h2>
             <p className="text-xl text-gray-600">
-              Event teams lose sponsor relationships every day. Manual tracking fails. 
-              Deadlines slip. Renewals disappear.
+              Premium sponsors expect flawless execution. Manual processes create liability. 
+              Professional tracking builds lasting partnerships.
             </p>
           </motion.div>
 
@@ -390,8 +401,8 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-10 leading-tight italic">
-                "SponsorAssure eliminated our delivery stress. Renewals went from 
-                <span className="text-green-600"> 60% to 95%</span>."
+                "From operational chaos to partnership excellence. SponsorAssure transformed our 
+                <span className="text-green-600">renewal rate to 95%</span>."
               </h2>
             </motion.div>
             <motion.div
@@ -401,10 +412,10 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: 0.6 }}
               className="flex items-center justify-center space-x-4"
             >
-              <PlaceholderImage 
+              <TestimonialPortrait 
                 className="w-16 h-16" 
-                alt="Marcus Rodriguez avatar"
-                gradient="from-green-500 to-blue-500"
+                alt="Marcus Rodriguez, Director of Partnerships"
+                imagePath="/images/testimonials/marcus-rodriguez.jpg"
               />
               <div className="text-left">
                 <p className="text-xl font-medium text-gray-900">Marcus Rodriguez</p>
@@ -426,10 +437,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              Everything you need to protect
+              Enterprise-grade assurance for
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                sponsor relationships
+                high-value partnerships
               </span>
             </h2>
           </motion.div>
@@ -450,10 +461,10 @@ export default function HomePage() {
                 <Clock className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Smart reminders
+                Precision alerts
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Intelligent alerts before deadlines with customizable timing for every deliverable type.
+                Intelligent deadline management with executive-level timing controls for every deliverable tier.
               </p>
             </motion.div>
 
@@ -466,10 +477,10 @@ export default function HomePage() {
                 <BarChart3 className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Risk dashboard
+                Executive oversight
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Real-time visibility into overdue, at-risk, and upcoming deliverables across all events.
+                Strategic command center with real-time portfolio visibility across all events and partnerships.
               </p>
             </motion.div>
 
@@ -482,10 +493,10 @@ export default function HomePage() {
                 <Users className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Team assignment
+                Seamless delegation
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Clear ownership and accountability for every deliverable with automated notifications.
+                Crystal-clear accountability chains with intelligent workflow automation and escalation protocols.
               </p>
             </motion.div>
 
@@ -498,10 +509,10 @@ export default function HomePage() {
                 <FileText className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Package templates
+                Tier-based frameworks
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Pre-built sponsor tier templates that ensure nothing gets missed from Bronze to Platinum.
+                Enterprise-calibrated sponsorship structures from foundational to flagship tier execution standards.
               </p>
             </motion.div>
 
@@ -514,10 +525,10 @@ export default function HomePage() {
                 <CheckCircle className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Proof tracking
+                Forensic documentation
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Evidence collection with photos, timestamps, and detailed fulfillment reports.
+                Comprehensive evidence systems with timestamped verification and audit-ready fulfillment records.
               </p>
             </motion.div>
 
@@ -530,10 +541,10 @@ export default function HomePage() {
                 <Shield className="h-10 w-10 text-blue-600 transition-all duration-300 group-hover:scale-110" />
               </motion.div>
               <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                Export reports
+                Strategic reporting
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Professional branded reports perfect for sponsor relations and renewal discussions.
+                Executive-grade deliverable portfolios designed for C-level sponsor renewal presentations.
               </p>
             </motion.div>
           </motion.div>
@@ -552,13 +563,13 @@ export default function HomePage() {
           >
             <motion.div variants={fadeInUp} className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Sponsor renewals increased <span className="text-green-600">40%</span> after implementing SponsorAssure."
+                "Professional-grade tracking elevated our sponsor relationships. Renewals increased <span className="text-green-600">40%</span> immediately."
               </h2>
               <div className="flex items-center justify-center space-x-4">
-                <PlaceholderImage 
+                <TestimonialPortrait 
                   className="w-14 h-14" 
-                  alt="Jennifer Walsh avatar"
-                  gradient="from-green-400 to-blue-500"
+                  alt="Jennifer Walsh, VP Events"
+                  imagePath="/images/testimonials/jennifer-walsh.jpg"
                 />
                 <div className="text-left">
                   <p className="text-lg font-medium text-gray-900">Jennifer Walsh</p>
@@ -569,13 +580,13 @@ export default function HomePage() {
 
             <motion.div variants={fadeInUp} className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Large events run smoother — teams focus on execution, not tracking."
+                "Large-scale events demand precision systems. Our teams now focus on creativity, not compliance."
               </h2>
               <div className="flex items-center justify-center space-x-4">
-                <PlaceholderImage 
+                <TestimonialPortrait 
                   className="w-14 h-14" 
-                  alt="David Park avatar"
-                  gradient="from-indigo-500 to-purple-600"
+                  alt="David Park, Event Operations"
+                  imagePath="/images/testimonials/david-park.jpg"
                 />
                 <div className="text-left">
                   <p className="text-lg font-medium text-gray-900">David Park</p>
@@ -586,13 +597,13 @@ export default function HomePage() {
 
             <motion.div variants={fadeInUp} className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6 italic">
-                "Delivery completion went from <span className="text-blue-600">85% to 99%</span> in three months."
+                "Flawless execution builds lasting partnerships. <span className="text-blue-600">99% completion rate</span> speaks for itself."
               </h2>
               <div className="flex items-center justify-center space-x-4">
-                <PlaceholderImage 
+                <TestimonialPortrait 
                   className="w-14 h-14" 
-                  alt="Lisa Chang avatar"
-                  gradient="from-pink-500 to-red-500"
+                  alt="Lisa Chang, Sponsor Relations Manager"
+                  imagePath="/images/testimonials/lisa-chang.jpg"
                 />
                 <div className="text-left">
                   <p className="text-lg font-medium text-gray-900">Lisa Chang</p>
@@ -615,15 +626,15 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-              From first setup to 
+              Professional execution.
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-                forever protected.
+                Lifetime partnerships.
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              With SponsorAssure, every deliverable becomes the start of stronger relationships. 
-              Teams deliver, sponsors renew, creating a circle of growth and trust.
+              Transform operational uncertainty into strategic advantage. When execution meets expectation, 
+              sponsors become partners—and partnerships become growth engines.
             </p>
           </motion.div>
 
@@ -668,14 +679,15 @@ export default function HomePage() {
               whileHover={{ scale: 1.05, y: -3 }} 
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
+              className="inline-block"
             >
               <Button 
                 size="lg" 
-                className="btn-premium text-xl px-12 py-6 bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300" 
+                className="btn-premium text-xl px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-blue-500 hover:border-blue-600" 
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-3">
-                  <span>Start protecting sponsors</span>
+                  <span>Elevate sponsor relations</span>
                   <motion.div
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
@@ -693,7 +705,7 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="text-sm text-gray-500 mt-6"
             >
-              14-day free trial • No credit card required • Setup in minutes
+              Professional trial • Executive setup • White-glove onboarding
             </motion.p>
           </motion.div>
         </div>
