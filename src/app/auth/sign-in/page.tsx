@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Shield, Loader2 } from 'lucide-react'
+import { Shield, Loader2, ArrowLeft, Eye, EyeOff } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
@@ -53,74 +54,97 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
+      <div className="absolute top-0 right-1/3 w-72 h-72 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+      
+      <div className="relative w-full max-w-md animate-fade-in">
         {/* Logo */}
-        <div className="flex items-center justify-center space-x-2 mb-8">
-          <Shield className="h-8 w-8 text-blue-600" />
-          <span className="text-2xl font-bold text-gray-900">SponsorAssure</span>
-        </div>
+        <Link href="/" className="flex items-center justify-center space-x-3 mb-8 group">
+          <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-indigo-500/25 transition-all group-hover:scale-105">
+            <Shield className="h-6 w-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            SponsorAssure
+          </span>
+        </Link>
 
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
-            <CardDescription className="text-center">
-              Sign in to your account to continue
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <form onSubmit={handleSignIn} className="space-y-4">
+        <div className="glass-card rounded-2xl p-8 border hover:border-indigo-200/50 transition-all">
+          <div className="space-y-2 mb-8 text-center">
+            <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
+            <p className="text-gray-600">
+              Sign in to your account to continue protecting your sponsor relationships
+            </p>
+          </div>
+          <div className="space-y-6">
+            <form onSubmit={handleSignIn} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email address</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="h-12 px-4 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="h-12 px-4 pr-12 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
               </div>
               
               {error && (
-                <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                <div className="text-sm text-red-600 bg-red-50 border border-red-200 p-4 rounded-xl animate-scale-in">
                   {error}
                 </div>
               )}
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button 
+                type="submit" 
+                className="w-full h-12 btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25 font-medium" 
+                disabled={loading}
+              >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Sign In
+                {loading ? 'Signing in...' : 'Sign In'}
               </Button>
             </form>
 
-            <div className="relative">
+            <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+                <div className="w-full border-t border-gray-200"></div>
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 text-gray-500 bg-white/80">Or continue with</span>
               </div>
             </div>
 
             <Button 
               variant="outline" 
-              className="w-full" 
+              className="w-full h-12 btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50 font-medium" 
               onClick={handleGoogleSignIn}
               disabled={loading}
             >
-              <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+              <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -141,24 +165,25 @@ export default function SignInPage() {
               Sign in with Google
             </Button>
 
-            <div className="text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link href="/auth/sign-up" className="text-blue-600 hover:underline font-medium">
+            <div className="text-center text-sm pt-4">
+              <span className="text-gray-600">Don't have an account? </span>
+              <Link href="/auth/sign-up" className="text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
                 Sign up
               </Link>
             </div>
 
-            <div className="text-center">
-              <Link href="/auth/reset-password" className="text-sm text-blue-600 hover:underline">
+            <div className="text-center pt-2">
+              <Link href="/auth/reset-password" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">
                 Forgot your password?
               </Link>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         <div className="text-center mt-8">
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
-            ← Back to home
+          <Link href="/" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors group">
+            <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to home
           </Link>
         </div>
       </div>

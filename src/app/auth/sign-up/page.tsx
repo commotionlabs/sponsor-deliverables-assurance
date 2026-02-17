@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Shield, Loader2, CheckCircle } from 'lucide-react'
+import { Shield, Loader2, CheckCircle, ArrowLeft, Eye, EyeOff, Mail } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function SignUpPage() {
@@ -15,6 +15,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
   const [organizationName, setOrganizationName] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
@@ -71,123 +72,162 @@ export default function SignUpPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CheckCircle className="mx-auto h-12 w-12 text-green-600" />
-            <CardTitle className="text-2xl">Check your email</CardTitle>
-            <CardDescription>
-              We've sent a confirmation link to {email}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-600 text-center mb-4">
-              Click the link in the email to activate your account and get started.
-            </p>
-            <Button variant="outline" className="w-full" asChild>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
+        <div className="absolute top-0 right-1/3 w-72 h-72 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-3xl"></div>
+        
+        <div className="relative glass-card rounded-2xl p-8 w-full max-w-md animate-scale-in">
+          <div className="text-center space-y-6">
+            <div className="p-4 bg-green-50 rounded-full w-fit mx-auto">
+              <Mail className="h-12 w-12 text-green-600" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Check your email</h1>
+              <p className="text-gray-600 mb-4">
+                We've sent a confirmation link to
+              </p>
+              <p className="font-medium text-indigo-600 text-lg break-all">
+                {email}
+              </p>
+            </div>
+            <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+              <p className="text-sm text-blue-800 mb-2 font-medium">Next steps:</p>
+              <ol className="text-sm text-blue-700 space-y-1">
+                <li>1. Check your email (including spam folder)</li>
+                <li>2. Click the confirmation link</li>
+                <li>3. Complete your account setup</li>
+              </ol>
+            </div>
+            <Button variant="outline" className="w-full btn-modern" asChild>
               <Link href="/auth/sign-in">Back to sign in</Link>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
+      <div className="absolute top-0 left-1/3 w-72 h-72 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+      
+      <div className="relative w-full max-w-lg animate-fade-in">
         {/* Logo */}
-        <div className="flex items-center justify-center space-x-2 mb-8">
-          <Shield className="h-8 w-8 text-blue-600" />
-          <span className="text-2xl font-bold text-gray-900">SponsorAssure</span>
-        </div>
+        <Link href="/" className="flex items-center justify-center space-x-3 mb-8 group">
+          <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-indigo-500/25 transition-all group-hover:scale-105">
+            <Shield className="h-6 w-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            SponsorAssure
+          </span>
+        </Link>
 
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Create your account</CardTitle>
-            <CardDescription className="text-center">
-              Start protecting your sponsor relationships today
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <form onSubmit={handleSignUp} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+        <div className="glass-card rounded-2xl p-8 border hover:border-indigo-200/50 transition-all">
+          <div className="space-y-2 mb-8 text-center">
+            <h1 className="text-3xl font-bold text-gray-900">Create your account</h1>
+            <p className="text-gray-600">
+              Start protecting your sponsor relationships today with a 14-day free trial
+            </p>
+          </div>
+          <div className="space-y-6">
+            <form onSubmit={handleSignUp} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
+                  <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">Full Name</Label>
                   <Input
                     id="fullName"
                     placeholder="John Doe"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
+                    className="h-12 px-4 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="organizationName">Organization</Label>
+                  <Label htmlFor="organizationName" className="text-sm font-medium text-gray-700">Organization</Label>
                   <Input
                     id="organizationName"
                     placeholder="Acme Events"
                     value={organizationName}
                     onChange={(e) => setOrganizationName(e.target.value)}
+                    className="h-12 px-4 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
                     required
                   />
                 </div>
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700">Work Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="john@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="h-12 px-4 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
                   required
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Create a strong password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  minLength={6}
-                  required
-                />
-                <p className="text-xs text-gray-600">Must be at least 6 characters</p>
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Create a strong password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="h-12 px-4 pr-12 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
+                    minLength={6}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
+                <p className="text-xs text-gray-500">Must be at least 6 characters long</p>
               </div>
               
               {error && (
-                <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
+                <div className="text-sm text-red-600 bg-red-50 border border-red-200 p-4 rounded-xl animate-scale-in">
                   {error}
                 </div>
               )}
 
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button 
+                type="submit" 
+                className="w-full h-12 btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25 font-medium" 
+                disabled={loading}
+              >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Create Account
+                {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
 
-            <div className="relative">
+            <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+                <div className="w-full border-t border-gray-200"></div>
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 text-gray-500 bg-white/80">Or continue with</span>
               </div>
             </div>
 
             <Button 
               variant="outline" 
-              className="w-full" 
+              className="w-full h-12 btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50 font-medium" 
               onClick={handleGoogleSignUp}
               disabled={loading}
             >
-              <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+              <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -208,29 +248,30 @@ export default function SignUpPage() {
               Sign up with Google
             </Button>
 
-            <div className="text-xs text-gray-600 text-center">
+            <div className="text-xs text-gray-500 text-center leading-relaxed">
               By creating an account, you agree to our{' '}
-              <Link href="/terms" className="text-blue-600 hover:underline">
+              <Link href="/terms" className="text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link href="/privacy" className="text-blue-600 hover:underline">
+              <Link href="/privacy" className="text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
                 Privacy Policy
               </Link>
             </div>
 
-            <div className="text-center text-sm">
-              <span className="text-muted-foreground">Already have an account? </span>
-              <Link href="/auth/sign-in" className="text-blue-600 hover:underline font-medium">
+            <div className="text-center text-sm pt-4">
+              <span className="text-gray-600">Already have an account? </span>
+              <Link href="/auth/sign-in" className="text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
                 Sign in
               </Link>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         <div className="text-center mt-8">
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
-            ← Back to home
+          <Link href="/" className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors group">
+            <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to home
           </Link>
         </div>
       </div>
