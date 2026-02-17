@@ -212,30 +212,30 @@ export default function HomePage() {
             {/* Pre-headline badge - refined */}
             <motion.div variants={fadeInUp} className="mb-3">
               <Badge className="bg-gray-100 text-gray-700 border-gray-200 px-3 py-1 text-xs font-medium">
-                Trusted by 1,200+ event professionals
+                Used by 1,200+ events • 99.2% completion rate • $47M+ sponsor value secured
               </Badge>
             </motion.div>
 
-            {/* Hero headline - refined typography */}
+            {/* Hero headline - sharpened for maximum clarity */}
             <motion.h1 
               variants={fadeInScale}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-black mb-3 leading-[1.1] tracking-tight"
             >
-              Professional sponsor
+              Never miss another
               <br />
               <span className="text-blue-600">
-                execution
+                sponsor deliverable
               </span>
             </motion.h1>
 
-            {/* Subtitle - refined spacing and typography */}
+            {/* Subtitle - clearer value proposition */}
             <motion.p 
               variants={fadeInUp}
               className="text-base sm:text-lg text-gray-600 mb-5 max-w-2xl mx-auto leading-[1.4]"
             >
-              Transform deliverable chaos into partnership certainty.
+              Stop losing sponsors to missed deadlines. Track every commitment,
               <br className="hidden sm:block" />
-              Enterprise-grade tracking that scales.
+              hit 99%+ completion rates, protect your reputation.
             </motion.p>
 
             {/* CTA buttons - refined spacing */}
@@ -249,7 +249,7 @@ export default function HomePage() {
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Start tracking</span>
+                  <span>Start protecting your reputation</span>
                   <ArrowRight className="h-3 w-3" />
                 </Link>
               </Button>
@@ -319,7 +319,7 @@ export default function HomePage() {
             className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-2">
+              <div className="mb-2 p-4 rounded-lg bg-white/70 backdrop-blur-sm border border-gray-200/40 shadow-sm">
                 <AnimatedCounter 
                   end={1247} 
                   suffix="+" 
@@ -327,13 +327,13 @@ export default function HomePage() {
                   className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
-                  Events powered
+                  Successful events
                 </div>
               </div>
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-2">
+              <div className="mb-2 p-4 rounded-lg bg-white/70 backdrop-blur-sm border border-gray-200/40 shadow-sm">
                 <AnimatedCounter 
                   end={47} 
                   prefix="$" 
@@ -342,13 +342,13 @@ export default function HomePage() {
                   className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
-                  Sponsor value protected
+                  In sponsor deals secured
                 </div>
               </div>
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-2">
+              <div className="mb-2 p-4 rounded-lg bg-white/70 backdrop-blur-sm border border-gray-200/40 shadow-sm">
                 <AnimatedCounter 
                   end={99.2} 
                   suffix="%" 
@@ -362,7 +362,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeInScale} className="text-center">
-              <div className="mb-2">
+              <div className="mb-2 p-4 rounded-lg bg-white/70 backdrop-blur-sm border border-gray-200/40 shadow-sm">
                 <AnimatedCounter 
                   end={127000} 
                   suffix="+" 
@@ -370,7 +370,7 @@ export default function HomePage() {
                   className="text-2xl sm:text-3xl lg:text-[2.25rem] text-black mb-1 leading-none"
                 />
                 <div className="text-xs text-gray-600">
-                  Touchpoints managed
+                  Deliverables completed
                 </div>
               </div>
             </motion.div>
@@ -393,12 +393,12 @@ export default function HomePage() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="relative"
+              className="relative p-6 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-lg"
             >
               <blockquote className="text-xl sm:text-2xl lg:text-[1.75rem] font-medium mb-5 leading-[1.3] text-black">
-                "We went from 78% completion to 99.2% overnight.
+                "Our sponsor retention jumped from 60% to 94% in one season.
                 <br className="hidden sm:block" />
-                This platform transformed our reputation."
+                Finally, a system that matches our standards."
               </blockquote>
             </motion.div>
             
@@ -440,10 +440,10 @@ export default function HomePage() {
             className="max-w-2xl mx-auto text-center mb-7"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-black mb-3 leading-[1.2]">
-              Enterprise-grade precision
+              Built for high-stakes events
             </h2>
             <p className="text-base sm:text-lg text-gray-600 leading-[1.4]">
-              The professional system your reputation demands
+              When your reputation is on the line, precision isn't optional
             </p>
           </motion.div>
 
@@ -458,43 +458,43 @@ export default function HomePage() {
             {[
               {
                 icon: Clock,
-                title: "Precision alerts",
-                description: "Intelligent deadline management with executive-level timing controls and predictive risk assessment.",
+                title: "Smart deadline tracking",
+                description: "Never miss a sponsor deadline again. Automated alerts, risk warnings, and predictive scheduling keep every commitment on track.",
                 gradient: "from-blue-500 to-blue-600",
                 bgGradient: "from-blue-50 to-blue-100"
               },
               {
                 icon: BarChart3,
-                title: "Executive dashboard",
-                description: "Real-time portfolio visibility across all events and partnerships with strategic insights.",
+                title: "Real-time oversight",
+                description: "See exactly what's happening across all events and sponsors. Spot issues before they become problems.",
                 gradient: "from-purple-500 to-purple-600",
                 bgGradient: "from-purple-50 to-purple-100"
               },
               {
                 icon: Users,
-                title: "Team coordination",
-                description: "Crystal-clear accountability with intelligent workflow automation and role-based permissions.",
+                title: "Team accountability",
+                description: "No more confusion about who owns what. Clear assignments, progress tracking, and automated handoffs.",
                 gradient: "from-green-500 to-green-600",
                 bgGradient: "from-green-50 to-green-100"
               },
               {
                 icon: FileText,
-                title: "Tier frameworks",
-                description: "Enterprise-calibrated sponsorship structures from basic to flagship tier with custom templates.",
+                title: "Proven templates",
+                description: "Pre-built sponsor tier frameworks from 1,200+ successful events. Start with what works, customize as needed.",
                 gradient: "from-orange-500 to-orange-600",
                 bgGradient: "from-orange-50 to-orange-100"
               },
               {
                 icon: CheckCircle,
-                title: "Documentation",
-                description: "Comprehensive evidence systems with timestamped verification and automated compliance reporting.",
+                title: "Proof of delivery",
+                description: "Timestamped evidence of every completed deliverable. Show sponsors exactly how you delivered on promises.",
                 gradient: "from-teal-500 to-teal-600",
                 bgGradient: "from-teal-50 to-teal-100"
               },
               {
                 icon: Shield,
-                title: "Strategic reports",
-                description: "Executive-grade portfolios designed for C-level presentations with custom branding options.",
+                title: "Professional reporting",
+                description: "Sponsor-ready reports that showcase your execution excellence. Build trust with transparent performance data.",
                 gradient: "from-red-500 to-red-600",
                 bgGradient: "from-red-50 to-red-100"
               }
@@ -506,7 +506,7 @@ export default function HomePage() {
                 transition={{ duration: 0.3 }}
                 className="group"
               >
-                <div className="p-4 rounded-lg bg-white border border-gray-200 hover:border-gray-300 transition-colors duration-200">
+                <div className="p-4 rounded-lg bg-white/90 backdrop-blur-sm border border-gray-200/50 hover:border-gray-300/70 hover:bg-white/95 transition-all duration-300 shadow-sm hover:shadow-md">
                   <div className={`w-8 h-8 bg-gradient-to-r ${feature.gradient} rounded-md flex items-center justify-center mb-3`}>
                     <feature.icon className="h-4 w-4 text-white" />
                   </div>
@@ -542,10 +542,11 @@ export default function HomePage() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
+              className="p-6 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-lg"
             >
               <blockquote className="text-xl sm:text-2xl font-medium text-black mb-4 leading-[1.3]">
-                "Large-scale events demand precision systems — 
-                our teams now focus on creativity, not compliance."
+                "Before SponsorAssure: constant fire-drills and disappointed partners.
+                After: bulletproof execution and sponsors asking to expand their packages."
               </blockquote>
             </motion.div>
             
@@ -577,13 +578,13 @@ export default function HomePage() {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold mb-3 leading-[1.2] text-black">
-              Professional execution.
+              Stop losing sponsors
               <br />
-              Lasting partnerships.
+              to missed deadlines
             </h2>
             
             <p className="text-base sm:text-lg mb-5 max-w-xl mx-auto text-gray-600 leading-[1.4]">
-              Transform sponsor uncertainty into strategic advantage with enterprise-grade tracking
+              Join 1,200+ event professionals who turned execution chaos into competitive advantage
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -593,7 +594,7 @@ export default function HomePage() {
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Start tracking</span>
+                  <span>Get 99%+ completion rates</span>
                   <ArrowRight className="h-3 w-3" />
                 </Link>
               </Button>
