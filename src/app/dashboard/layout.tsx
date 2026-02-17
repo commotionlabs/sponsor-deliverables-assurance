@@ -23,7 +23,7 @@ export default async function DashboardLayout({
       <div className="fixed inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px] pointer-events-none"></div>
       
       <DashboardNavigation user={user} />
-      <main className="lg:pl-64">
+      <main className="lg:pl-64 pt-16 lg:pt-0">
         <div className="relative p-4 sm:p-6 lg:p-8">
           {children}
         </div>

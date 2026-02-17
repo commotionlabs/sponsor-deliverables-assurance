@@ -65,29 +65,29 @@ function DeliverableCard({ deliverable }: { deliverable: any }) {
   const daysUntilDue = Math.ceil((new Date(deliverable.due_date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
 
   return (
-    <Card className={`hover:shadow-md transition-shadow ${isOverdue ? 'border-red-200 bg-red-50' : ''}`}>
-      <CardHeader className="pb-3">
-        <div className="flex justify-between items-start">
-          <div className="flex-1 min-w-0">
-            <CardTitle className="text-lg font-medium truncate">{deliverable.title}</CardTitle>
-            <div className="flex items-center space-x-2 mt-2">
-              <Badge className={getStatusBadgeColor(deliverable.status)}>
-                {deliverable.status.replace('_', ' ')}
-              </Badge>
-              {risk !== 'none' && (
-                <Badge className={getRiskBadgeColor(risk)}>
-                  {risk}
-                </Badge>
-              )}
-              <Badge variant="outline" className="capitalize">
-                {deliverable.priority || 'medium'}
-              </Badge>
-            </div>
+    <div className={`glass-card p-6 rounded-2xl border transition-all hover:shadow-lg ${
+      isOverdue ? 'border-red-200/80 bg-red-50/50' : 'hover:border-indigo-200/50'
+    }`}>
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-semibold text-gray-900 truncate mb-2">{deliverable.title}</h3>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadgeColor(deliverable.status)}`}>
+              {deliverable.status.replace('_', ' ')}
+            </span>
+            {risk !== 'none' && (
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${getRiskBadgeColor(risk)}`}>
+                {risk}
+              </span>
+            )}
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 capitalize">
+              {deliverable.priority || 'medium'}
+            </span>
           </div>
         </div>
-      </CardHeader>
+      </div>
       
-      <CardContent className="space-y-3">
+      <div className="space-y-4">
         {/* Sponsor & Event Info */}
         <div className="space-y-1 text-sm text-gray-600">
           <div className="flex items-center space-x-2">
@@ -135,8 +135,8 @@ function DeliverableCard({ deliverable }: { deliverable: any }) {
             </p>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
 
@@ -173,122 +173,126 @@ export default async function DeliverablesPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-7xl animate-fade-in">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Deliverables</h1>
-          <p className="text-gray-600">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="space-y-2">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">Deliverables</h1>
+          <p className="text-lg text-gray-600">
             Track and manage all sponsor deliverables across your events
           </p>
         </div>
-        <div className="flex space-x-2">
-          <Button variant="outline" asChild>
-            <Link href="/api/export/deliverables">
-              <Download className="h-4 w-4 mr-2" />
-              Export CSV
+        <div className="flex items-center space-x-3">
+          <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50" asChild>
+            <Link href="/api/export/deliverables" className="flex items-center space-x-2">
+              <Download className="h-4 w-4" />
+              <span>Export CSV</span>
             </Link>
           </Button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Deliverables</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.total}</div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="glass-card p-6 rounded-2xl border hover:border-blue-200/50 transition-all group">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-600">Total Deliverables</p>
+              <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+            </div>
+            <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl group-hover:from-blue-200 group-hover:to-indigo-200 transition-all">
+              <FileText className="h-6 w-6 text-blue-600" />
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completed</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">{stats.completed}</div>
-            <p className="text-xs text-muted-foreground">
-              {stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0}% completion rate
-            </p>
-          </CardContent>
-        </Card>
+        <div className="glass-card p-6 rounded-2xl border hover:border-green-200/50 transition-all group">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-600">Completed</p>
+              <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
+              <p className="text-xs text-gray-500">
+                {stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0}% completion rate
+              </p>
+            </div>
+            <div className="p-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl group-hover:from-green-200 group-hover:to-emerald-200 transition-all">
+              <CheckCircle className="h-6 w-6 text-green-600" />
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Overdue</CardTitle>
-            <XCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">{stats.overdue}</div>
-            <p className="text-xs text-muted-foreground">
-              Need immediate attention
-            </p>
-          </CardContent>
-        </Card>
+        <div className="glass-card p-6 rounded-2xl border hover:border-red-200/50 transition-all group">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-600">Overdue</p>
+              <p className="text-3xl font-bold text-red-600">{stats.overdue}</p>
+              <p className="text-xs text-gray-500">Need immediate attention</p>
+            </div>
+            <div className="p-3 bg-gradient-to-br from-red-100 to-orange-100 rounded-xl group-hover:from-red-200 group-hover:to-orange-200 transition-all">
+              <XCircle className="h-6 w-6 text-red-600" />
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Due Soon</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-orange-600">{stats.dueSoon}</div>
-            <p className="text-xs text-muted-foreground">
-              Due within 3 days
-            </p>
-          </CardContent>
-        </Card>
+        <div className="glass-card p-6 rounded-2xl border hover:border-orange-200/50 transition-all group">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-600">Due Soon</p>
+              <p className="text-3xl font-bold text-orange-600">{stats.dueSoon}</p>
+              <p className="text-xs text-gray-500">Due within 3 days</p>
+            </div>
+            <div className="p-3 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl group-hover:from-orange-200 group-hover:to-yellow-200 transition-all">
+              <Clock className="h-6 w-6 text-orange-600" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Filters */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Filter & Search</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex space-x-4">
+      <div className="glass-card rounded-2xl border hover:border-indigo-200/50 transition-all">
+        <div className="p-6 border-b border-gray-100">
+          <h3 className="text-xl font-bold text-gray-900">Filter & Search</h3>
+        </div>
+        <div className="p-6">
+          <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search deliverables..."
-                  className="pl-10"
+                  className="pl-10 h-12 bg-white/80 border-gray-200 focus:border-indigo-300 focus:ring-indigo-200"
                 />
               </div>
             </div>
-            <Button variant="outline">
+            <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50 h-12 px-6">
               <Filter className="h-4 w-4 mr-2" />
               Filter
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Deliverables List */}
       {deliverables.length === 0 ? (
-        <Card className="text-center py-12">
-          <CardContent>
-            <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No deliverables yet</h3>
-            <p className="text-gray-600 mb-4">
-              Deliverables will appear here when you add sponsors to your events
-            </p>
-            <div className="space-x-4">
-              <Button asChild>
-                <Link href="/dashboard/events/new">Create Event</Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link href="/dashboard/sponsors/new">Add Sponsor</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="glass-card rounded-2xl border text-center py-16">
+          <div className="p-4 bg-blue-50 rounded-full w-fit mx-auto mb-6">
+            <FileText className="h-12 w-12 text-blue-500" />
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">No deliverables yet</h3>
+          <p className="text-gray-600 mb-8 max-w-md mx-auto">
+            Deliverables will appear here when you add sponsors to your events
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button className="btn-modern bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-500/25" asChild>
+              <Link href="/dashboard/events/new">Create Event</Link>
+            </Button>
+            <Button variant="outline" className="btn-modern border-gray-200 hover:border-indigo-200 hover:bg-indigo-50/50" asChild>
+              <Link href="/dashboard/sponsors/new">Add Sponsor</Link>
+            </Button>
+          </div>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {deliverables.map((deliverable) => (
             <DeliverableCard key={deliverable.id} deliverable={deliverable} />
           ))}

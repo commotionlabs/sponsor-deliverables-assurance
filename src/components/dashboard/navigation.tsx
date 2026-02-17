@@ -15,7 +15,9 @@ import {
   Settings, 
   LogOut,
   ChevronDown,
-  Building2
+  Building2,
+  Menu,
+  X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { User } from '@supabase/auth-helpers-nextjs'
@@ -37,6 +39,7 @@ const navigation = [
 export function DashboardNavigation({ user }: NavigationProps) {
   const pathname = usePathname()
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = createClient()
 
   const handleSignOut = async () => {
@@ -46,13 +49,40 @@ export function DashboardNavigation({ user }: NavigationProps) {
 
   return (
     <>
+      {/* Mobile header bar */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-sm">
+        <div className="flex items-center justify-between px-4 py-3">
+          <Link href="/dashboard" className="flex items-center space-x-3">
+            <div className="p-1.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg shadow-md">
+              <Shield className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              SponsorAssure
+            </span>
+          </Link>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 hover:bg-gray-100 rounded-lg"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
+      </div>
+
       {/* Mobile backdrop */}
-      <div className="lg:hidden fixed inset-0 z-40 bg-gray-600 bg-opacity-75 pointer-events-none"></div>
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-40 bg-gray-600/75 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
+      )}
       
       {/* Sidebar */}
-      <div className="fixed left-0 top-0 bottom-0 w-64 bg-white/95 backdrop-blur-xl border-r border-gray-200/50 shadow-xl lg:shadow-none z-50 lg:z-30">
+      <div className={cn(
+        "fixed left-0 top-0 bottom-0 w-64 bg-white/95 backdrop-blur-xl border-r border-gray-200/50 shadow-xl lg:shadow-none z-50 lg:z-30 transition-transform lg:translate-x-0",
+        mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      )}>
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-gray-100">
+          <div className="p-6 border-b border-gray-100 hidden lg:block">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center space-x-3 group">
               <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-indigo-500/25 transition-all group-hover:scale-105">
@@ -63,6 +93,9 @@ export function DashboardNavigation({ user }: NavigationProps) {
               </span>
             </Link>
           </div>
+          
+          {/* Mobile header space */}
+          <div className="h-16 lg:hidden"></div>
 
           {/* Navigation */}
           <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
@@ -72,6 +105,7 @@ export function DashboardNavigation({ user }: NavigationProps) {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={cn(
                     'flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all group',
                     isActive
