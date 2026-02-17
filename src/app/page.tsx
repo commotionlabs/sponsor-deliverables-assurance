@@ -195,12 +195,9 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION - Minimal clean design */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-black">
-        {/* Subtle background accent */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
-        </div>
+      {/* HERO SECTION - Clean white minimal design */}
+      <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-white">
+        {/* Removed background accents for clean white canvas */}
 
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
@@ -210,116 +207,116 @@ export default function HomePage() {
             variants={heroStagger}
             initial="initial"
             animate="animate"
-            className="max-w-4xl mx-auto"
+            className="max-w-3xl mx-auto"
           >
-            {/* Pre-headline badge - simplified */}
-            <motion.div variants={fadeInUp} className="mb-6">
-              <Badge className="bg-white/10 text-white border-white/20 px-4 py-1 text-sm font-normal">
+            {/* Pre-headline badge - minimal */}
+            <motion.div variants={fadeInUp} className="mb-4">
+              <Badge className="bg-gray-100 text-gray-700 border-gray-200 px-3 py-1 text-xs font-medium">
                 Trusted by 1,200+ event professionals
               </Badge>
             </motion.div>
 
-            {/* Hero headline - reduced scale */}
+            {/* Hero headline - smaller, tighter */}
             <motion.h1 
               variants={fadeInScale}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 leading-tight tracking-tight"
             >
               Professional sponsor
               <br />
-              <span className="text-blue-400">
+              <span className="text-blue-600">
                 execution
               </span>
             </motion.h1>
 
-            {/* Subtitle - reduced scale */}
+            {/* Subtitle - smaller, tighter */}
             <motion.p 
               variants={fadeInUp}
-              className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed"
             >
               Transform deliverable chaos into partnership certainty.
               <br className="hidden sm:block" />
               Enterprise-grade tracking that scales.
             </motion.p>
 
-            {/* CTA buttons - simplified */}
+            {/* CTA buttons - minimal styling */}
             <motion.div 
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8"
             >
               <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium"
+                size="default" 
+                className="bg-black hover:bg-gray-800 text-white px-6 py-2 text-sm font-medium"
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
                   <span>Start tracking</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3 w-3" />
                 </Link>
               </Button>
 
               <Button 
                 variant="outline"
-                size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 px-6 py-3 font-medium"
+                size="default" 
+                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-5 py-2 text-sm font-medium"
                 asChild
               >
                 <Link href="#demo" className="flex items-center space-x-2">
-                  <Play className="h-4 w-4" />
+                  <Play className="h-3 w-3" />
                   <span>Watch demo</span>
                 </Link>
               </Button>
             </motion.div>
 
-            {/* Trust logos row */}
+            {/* Trust logos row - minimal */}
             <motion.div 
               variants={fadeInUp}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto"
             >
-              <div className="flex items-center justify-center opacity-60">
-                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
-                  <span className="text-sm text-white/80">Global Events Co.</span>
+              <div className="flex items-center justify-center opacity-50">
+                <div className="px-2 py-1 bg-gray-100 rounded border border-gray-200">
+                  <span className="text-xs text-gray-600">Global Events Co.</span>
                 </div>
               </div>
-              <div className="flex items-center justify-center opacity-60">
-                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
-                  <span className="text-sm text-white/80">Summit Series</span>
+              <div className="flex items-center justify-center opacity-50">
+                <div className="px-2 py-1 bg-gray-100 rounded border border-gray-200">
+                  <span className="text-xs text-gray-600">Summit Series</span>
                 </div>
               </div>
-              <div className="flex items-center justify-center opacity-60">
-                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
-                  <span className="text-sm text-white/80">Industry Connect</span>
+              <div className="flex items-center justify-center opacity-50">
+                <div className="px-2 py-1 bg-gray-100 rounded border border-gray-200">
+                  <span className="text-xs text-gray-600">Industry Connect</span>
                 </div>
               </div>
-              <div className="flex items-center justify-center opacity-60">
-                <div className="px-3 py-2 bg-white/10 rounded-md border border-white/20">
-                  <span className="text-sm text-white/80">Innovation Forum</span>
+              <div className="flex items-center justify-center opacity-50">
+                <div className="px-2 py-1 bg-gray-100 rounded border border-gray-200">
+                  <span className="text-xs text-gray-600">Innovation Forum</span>
                 </div>
               </div>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - minimal */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
+          <div className="w-5 h-8 border border-gray-400 rounded-full flex justify-center">
+            <div className="w-1 h-2 bg-gray-500 rounded-full mt-1"></div>
           </div>
         </motion.div>
       </section>
 
       {/* STATS SECTION */}
-      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, threshold: 0.3 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             <motion.div variants={fadeInScale} className="text-center">
               <div className="mb-3">
@@ -327,9 +324,9 @@ export default function HomePage() {
                   end={1247} 
                   suffix="+" 
                   duration={2000} 
-                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
+                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
                 />
-                <div className="text-sm text-gray-600">
+                <div className="text-xs text-gray-600">
                   Events powered
                 </div>
               </div>
@@ -342,9 +339,9 @@ export default function HomePage() {
                   prefix="$" 
                   suffix="M+" 
                   duration={2200} 
-                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
+                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
                 />
-                <div className="text-sm text-gray-600">
+                <div className="text-xs text-gray-600">
                   Sponsor value protected
                 </div>
               </div>
@@ -356,9 +353,9 @@ export default function HomePage() {
                   end={99.2} 
                   suffix="%" 
                   duration={2400} 
-                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
+                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
                 />
-                <div className="text-sm text-gray-600">
+                <div className="text-xs text-gray-600">
                   On-time completion rate
                 </div>
               </div>
@@ -370,9 +367,9 @@ export default function HomePage() {
                   end={127000} 
                   suffix="+" 
                   duration={2600} 
-                  className="text-3xl sm:text-4xl lg:text-5xl text-black mb-2"
+                  className="text-2xl sm:text-3xl lg:text-4xl text-black mb-1"
                 />
-                <div className="text-sm text-gray-600">
+                <div className="text-xs text-gray-600">
                   Touchpoints managed
                 </div>
               </div>
@@ -381,11 +378,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIAL - Clean minimal */}
-      <section className="py-20 sm:py-24 bg-gray-900 text-white relative">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-2xl"></div>
-        </div>
+      {/* TESTIMONIAL - Clean white minimal */}
+      <section className="py-16 sm:py-20 bg-white relative">
+        {/* Removed background accents for clean white canvas */}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
@@ -393,14 +388,14 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-8 leading-relaxed">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium mb-6 leading-relaxed text-black">
                 "We went from 78% completion to 99.2% overnight.
                 <br className="hidden sm:block" />
                 This platform transformed our reputation."
@@ -408,24 +403,24 @@ export default function HomePage() {
             </motion.div>
             
             <motion.div 
-              className="flex items-center justify-center space-x-4"
+              className="flex items-center justify-center space-x-3"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <TestimonialPortrait 
-                className="w-16 h-16" 
+                className="w-12 h-12" 
                 alt="Sarah Kim"
                 imagePath="/images/testimonials/sarah-chen.jpg"
               />
               <div className="text-left">
-                <p className="font-semibold text-xl text-white">Sarah Kim</p>
-                <p className="text-gray-300">Summit Events, VP Operations</p>
+                <p className="font-medium text-lg text-black">Sarah Kim</p>
+                <p className="text-gray-600 text-sm">Summit Events, VP Operations</p>
               </div>
-              <div className="hidden sm:flex items-center space-x-1 ml-8">
+              <div className="hidden sm:flex items-center space-x-1 ml-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
                 ))}
               </div>
             </motion.div>
@@ -434,7 +429,7 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-16 sm:py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div 
@@ -442,12 +437,12 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center mb-12"
+            className="max-w-2xl mx-auto text-center mb-8"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3 leading-tight">
               Enterprise-grade precision
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
               The professional system your reputation demands
             </p>
           </motion.div>
@@ -458,7 +453,7 @@ export default function HomePage() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto"
           >
             {[
               {
@@ -511,21 +506,21 @@ export default function HomePage() {
                 transition={{ duration: 0.3 }}
                 className="group"
               >
-                <div className="p-6 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} rounded-lg flex items-center justify-center mb-4`}>
-                    <feature.icon className="h-6 w-6 text-white" />
+                <div className="p-4 rounded bg-white border border-gray-200 hover:border-gray-300 transition-colors duration-200">
+                  <div className={`w-8 h-8 bg-gradient-to-r ${feature.gradient} rounded flex items-center justify-center mb-3`}>
+                    <feature.icon className="h-4 w-4 text-white" />
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-black mb-3">
+                  <h3 className="text-lg font-medium text-black mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                   
-                  <div className="flex items-center mt-4 text-gray-500 text-sm">
+                  <div className="flex items-center mt-3 text-gray-500 text-xs">
                     <span>Learn more</span>
-                    <ChevronRight className="w-4 h-4 ml-1" />
+                    <ChevronRight className="w-3 h-3 ml-1" />
                   </div>
                 </div>
               </motion.div>
@@ -535,45 +530,43 @@ export default function HomePage() {
       </section>
 
       {/* QUOTE CALLOUT */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-3xl mx-auto text-center"
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <blockquote className="text-2xl sm:text-3xl font-semibold text-black mb-6 leading-relaxed">
+              <blockquote className="text-xl sm:text-2xl font-medium text-black mb-4 leading-relaxed">
                 "Large-scale events demand precision systems — 
                 our teams now focus on creativity, not compliance."
               </blockquote>
             </motion.div>
             
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center justify-center space-x-3">
               <TestimonialPortrait 
-                className="w-14 h-14" 
+                className="w-10 h-10" 
                 alt="Lisa Chang"
                 imagePath="/images/testimonials/lisa-chang.jpg"
               />
               <div className="text-left">
-                <p className="font-semibold text-xl text-black">Lisa Chang</p>
-                <p className="text-gray-600">Sponsor Relations Manager, Industry Connect</p>
+                <p className="font-medium text-base text-black">Lisa Chang</p>
+                <p className="text-gray-600 text-sm">Sponsor Relations Manager, Industry Connect</p>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* MID-PAGE CTA - Minimal */}
-      <section className="py-20 sm:py-24 bg-gray-900 text-white relative">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-32 bg-blue-500 rounded-full blur-3xl"></div>
-        </div>
+      {/* MID-PAGE CTA - Clean white minimal */}
+      <section className="py-16 sm:py-20 bg-gray-50 relative">
+        {/* Removed background accents for clean minimal look */}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
@@ -583,36 +576,36 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight text-black">
               Professional execution.
               <br />
               Lasting partnerships.
             </h2>
             
-            <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-gray-300 leading-relaxed">
+            <p className="text-base sm:text-lg mb-6 max-w-xl mx-auto text-gray-600 leading-relaxed">
               Transform sponsor uncertainty into strategic advantage with enterprise-grade tracking
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 font-medium"
+                size="default" 
+                className="bg-black hover:bg-gray-800 text-white px-6 py-2 text-sm font-medium"
                 asChild
               >
                 <Link href="/auth/sign-up" className="flex items-center space-x-2">
                   <span>Start tracking</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3 w-3" />
                 </Link>
               </Button>
 
               <Button 
                 variant="outline"
-                size="lg" 
-                className="border-white/30 text-white hover:bg-white/10 px-6 py-3 font-medium"
+                size="default" 
+                className="border-gray-300 text-gray-700 hover:bg-white px-5 py-2 text-sm font-medium"
                 asChild
               >
                 <Link href="#demo" className="flex items-center space-x-2">
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-3 w-3" />
                   <span>Schedule demo</span>
                 </Link>
               </Button>
@@ -622,109 +615,109 @@ export default function HomePage() {
       </section>
 
       {/* FINAL STATS */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-5xl mx-auto text-center"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto text-center"
           >
             <motion.div variants={fadeInScale}>
-              <div className="text-3xl sm:text-4xl font-bold text-black mb-2">24/7</div>
-              <div className="text-gray-600">Enterprise support ready</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1">24/7</div>
+              <div className="text-gray-600 text-sm">Enterprise support ready</div>
             </motion.div>
             
             <motion.div variants={fadeInScale}>
-              <div className="text-3xl sm:text-4xl font-bold text-black mb-2 flex items-center justify-center">
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1 flex items-center justify-center">
                 <AnimatedCounter end={3} duration={1500} />
                 <span className="ml-1">days</span>
               </div>
-              <div className="text-gray-600">Full setup and training</div>
+              <div className="text-gray-600 text-sm">Full setup and training</div>
             </motion.div>
             
             <motion.div variants={fadeInScale}>
-              <div className="text-3xl sm:text-4xl font-bold text-black mb-2">100%</div>
-              <div className="text-gray-600">Deliverable coverage</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black mb-1">100%</div>
+              <div className="text-gray-600 text-sm">Deliverable coverage</div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ENHANCED FOOTER */}
-      <footer className="bg-gradient-to-br from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      <footer className="bg-gray-100 text-black border-t border-gray-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-8">
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
-              <Link href="/" className="flex items-center space-x-3 mb-6">
-                <div className="p-2 bg-gradient-to-br from-white to-gray-200 rounded-xl shadow-lg">
-                  <Shield className="h-6 w-6 text-black" />
+              <Link href="/" className="flex items-center space-x-2 mb-4">
+                <div className="p-1 bg-black rounded">
+                  <Shield className="h-4 w-4 text-white" />
                 </div>
-                <span className="text-xl font-bold">SponsorAssure</span>
+                <span className="text-lg font-bold">SponsorAssure</span>
               </Link>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Enterprise-grade sponsor tracking that transforms partnerships.
               </p>
             </div>
             
             {/* Product */}
             <div>
-              <h3 className="font-semibold mb-4 text-white">Product</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                <li><Link href="/demo" className="hover:text-white transition-colors">Demo</Link></li>
-                <li><Link href="/integrations" className="hover:text-white transition-colors">Integrations</Link></li>
+              <h3 className="font-medium mb-3 text-black text-sm">Product</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/features" className="hover:text-black transition-colors text-sm">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-black transition-colors text-sm">Pricing</Link></li>
+                <li><Link href="/demo" className="hover:text-black transition-colors text-sm">Demo</Link></li>
+                <li><Link href="/integrations" className="hover:text-black transition-colors text-sm">Integrations</Link></li>
               </ul>
             </div>
             
             {/* Company */}
             <div>
-              <h3 className="font-semibold mb-4 text-white">Company</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/press" className="hover:text-white transition-colors">Press</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <h3 className="font-medium mb-3 text-black text-sm">Company</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/about" className="hover:text-black transition-colors text-sm">About</Link></li>
+                <li><Link href="/careers" className="hover:text-black transition-colors text-sm">Careers</Link></li>
+                <li><Link href="/press" className="hover:text-black transition-colors text-sm">Press</Link></li>
+                <li><Link href="/contact" className="hover:text-black transition-colors text-sm">Contact</Link></li>
               </ul>
             </div>
             
             {/* Support */}
             <div>
-              <h3 className="font-semibold mb-4 text-white">Support</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/help" className="hover:text-white transition-colors">Help Center</Link></li>
-                <li><Link href="/api" className="hover:text-white transition-colors">API Docs</Link></li>
-                <li><Link href="/status" className="hover:text-white transition-colors">System Status</Link></li>
-                <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
+              <h3 className="font-medium mb-3 text-black text-sm">Support</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/help" className="hover:text-black transition-colors text-sm">Help Center</Link></li>
+                <li><Link href="/api" className="hover:text-black transition-colors text-sm">API Docs</Link></li>
+                <li><Link href="/status" className="hover:text-black transition-colors text-sm">System Status</Link></li>
+                <li><Link href="/community" className="hover:text-black transition-colors text-sm">Community</Link></li>
               </ul>
             </div>
             
             {/* Legal */}
             <div>
-              <h3 className="font-semibold mb-4 text-white">Legal</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
-                <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
-                <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
-                <li><Link href="/compliance" className="hover:text-white transition-colors">Compliance</Link></li>
+              <h3 className="font-medium mb-3 text-black text-sm">Legal</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/privacy" className="hover:text-black transition-colors text-sm">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-black transition-colors text-sm">Terms</Link></li>
+                <li><Link href="/security" className="hover:text-black transition-colors text-sm">Security</Link></li>
+                <li><Link href="/compliance" className="hover:text-black transition-colors text-sm">Compliance</Link></li>
               </ul>
             </div>
           </div>
           
           {/* Bottom section */}
-          <div className="border-t border-gray-800 pt-8">
+          <div className="border-t border-gray-300 pt-6">
             <div className="flex flex-col sm:flex-row justify-between items-center">
-              <p className="text-gray-400">&copy; 2025 SponsorAssure. All rights reserved.</p>
-              <div className="flex items-center space-x-3 mt-4 sm:mt-0">
+              <p className="text-gray-600 text-sm">&copy; 2025 SponsorAssure. All rights reserved.</p>
+              <div className="flex items-center space-x-2 mt-3 sm:mt-0">
                 <motion.div 
-                  className="w-3 h-3 bg-green-500 rounded-full"
+                  className="w-2 h-2 bg-green-500 rounded-full"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="text-gray-400 text-sm">All systems operational</span>
+                <span className="text-gray-600 text-xs">All systems operational</span>
               </div>
             </div>
           </div>
