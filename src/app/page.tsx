@@ -1,11 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Shield, Calendar, FileText, BarChart3, ArrowRight, Star, Users, TrendingUp, Clock, AlertTriangle } from 'lucide-react'
+import { CheckCircle, Shield, Calendar, FileText, BarChart3, ArrowRight, Star, Users, TrendingUp, Clock, AlertTriangle, Globe, Zap, Award, Target, ChevronRight, Play, ExternalLink } from 'lucide-react'
 import { useRef, useEffect, useState } from 'react'
+import Image from 'next/image'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -13,24 +14,40 @@ const fadeInUp = {
   transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
 }
 
+const fadeInScale = {
+  initial: { opacity: 0, scale: 0.95 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+}
+
+const slideInLeft = {
+  initial: { opacity: 0, x: -60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 1, ease: [0.4, 0, 0.2, 1] }
+}
+
+const slideInRight = {
+  initial: { opacity: 0, x: 60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 1, ease: [0.4, 0, 0.2, 1] }
+}
+
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.15,
+      delayChildren: 0.3
     }
   }
 }
 
-const slideInFromLeft = {
-  initial: { opacity: 0, x: -50 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
-}
-
-const slideInFromRight = {
-  initial: { opacity: 0, x: 50 },
-  animate: { opacity: 1, x: 0 },
-  transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+const heroStagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
 }
 
 // Hook for detecting reduced motion preference
@@ -52,12 +69,19 @@ function useReducedMotion() {
   return prefersReducedMotion
 }
 
-// Animated counter component with reduced motion support
-function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: { 
+// Enhanced animated counter with magnetic hover effect
+function AnimatedCounter({ 
+  end, 
+  duration = 2000, 
+  suffix = '', 
+  prefix = '',
+  className = ''
+}: { 
   end: number; 
   duration?: number; 
   suffix?: string; 
   prefix?: string; 
+  className?: string;
 }) {
   const [count, setCount] = useState(0)
   const countRef = useRef(null)
@@ -67,7 +91,6 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: {
   useEffect(() => {
     if (!isInView) return
 
-    // If user prefers reduced motion, show final value immediately
     if (prefersReducedMotion) {
       setCount(end)
       return
@@ -80,8 +103,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: {
       if (!startTime) startTime = timestamp
       const progress = Math.min((timestamp - startTime) / duration, 1)
       
-      // Easing function for smooth animation
-      const easeOutExpo = 1 - Math.pow(2, -10 * progress)
+      const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
       const currentCount = Math.floor(easeOutExpo * end)
       
       setCount(currentCount)
@@ -98,13 +120,18 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }: {
   }, [end, duration, isInView, prefersReducedMotion])
 
   return (
-    <div ref={countRef} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-2 tracking-tight">
+    <motion.div 
+      ref={countRef} 
+      className={`font-bold tracking-tight ${className}`}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.2 }}
+    >
       {prefix}{count.toLocaleString()}{suffix}
-    </div>
+    </motion.div>
   )
 }
 
-// Professional testimonial portrait component
+// Premium testimonial with enhanced styling
 function TestimonialPortrait({ 
   className, 
   alt, 
@@ -115,466 +142,741 @@ function TestimonialPortrait({
   imagePath: string;
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-full ${className || ''}`}>
+    <motion.div 
+      className={`relative overflow-hidden rounded-full ring-2 ring-white/20 ${className || ''}`}
+      whileHover={{ scale: 1.1, rotate: 2 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
       <img 
         src={imagePath} 
         alt={alt}
         className="w-full h-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
-    </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+    </motion.div>
+  )
+}
+
+// Enhanced button with magnetic effect
+function MagneticButton({ 
+  children, 
+  className = '', 
+  variant = 'default',
+  size = 'default',
+  asChild,
+  ...props 
+}: any) {
+  const ref = useRef<HTMLButtonElement>(null)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20
+    setPosition({ x, y })
+  }
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 })
+  }
+
+  return (
+    <motion.div
+      style={{
+        x: position.x,
+        y: position.y,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
+      <Button
+        ref={ref}
+        className={`${className} transition-all duration-200`}
+        variant={variant}
+        size={size}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        {children}
+      </Button>
+    </motion.div>
+  )
+}
+
+// Trust logo component
+function TrustLogo({ name, className = '' }: { name: string; className?: string }) {
+  return (
+    <motion.div
+      className={`flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300 ${className}`}
+      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
+        <span className="text-sm font-medium text-white/80">{name}</span>
+      </div>
+    </motion.div>
   )
 }
 
 export default function HomePage() {
+  const heroRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  })
+  
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Compact Header - Sunday style */}
+      {/* Enhanced Header with glass morphism */}
       <motion.header 
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur-sm"
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 w-full z-50 border-b border-white/10 bg-white/90 backdrop-blur-xl"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="p-1.5 bg-black rounded-lg transition-all group-hover:bg-gray-800">
-              <Shield className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-lg font-bold text-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <motion.div 
+              className="p-2 bg-gradient-to-br from-black to-gray-800 rounded-xl shadow-lg"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Shield className="h-6 w-6 text-white" />
+            </motion.div>
+            <span className="text-xl font-bold bg-gradient-to-r from-black to-gray-700 bg-clip-text text-transparent">
               SponsorAssure
             </span>
           </Link>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <Button variant="ghost" size="sm" className="text-gray-600 hover:text-black hidden sm:inline-flex" asChild>
               <Link href="/auth/sign-in">Sign In</Link>
             </Button>
-            <Button size="sm" className="bg-black hover:bg-gray-800 text-white" asChild>
+            <MagneticButton size="sm" className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white shadow-lg" asChild>
               <Link href="/auth/sign-up">Get Started</Link>
-            </Button>
+            </MagneticButton>
           </div>
         </div>
       </motion.header>
 
-      {/* Compact Hero Lead-in */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 leading-tight">
-              Professional sponsor tracking
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Transform deliverable chaos into partnership certainty
-            </p>
-          </motion.div>
+      {/* HERO SECTION - Massive visual impact */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        {/* Dynamic background elements */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute top-0 left-0 w-full h-full opacity-20"
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 80%, #3b82f6 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 20%, #06b6d4 0%, transparent 50%)",
+                "radial-gradient(circle at 40% 40%, #3b82f6 0%, transparent 50%)"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
+          />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
+          />
         </div>
+
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+        >
+          <motion.div
+            variants={heroStagger}
+            initial="initial"
+            animate="animate"
+            className="max-w-5xl mx-auto"
+          >
+            {/* Pre-headline badge */}
+            <motion.div variants={fadeInUp} className="mb-8">
+              <Badge className="bg-white/10 text-white border-white/20 px-6 py-2 text-sm font-medium backdrop-blur-sm">
+                <Zap className="w-4 h-4 mr-2" />
+                Trusted by 1,200+ event professionals
+              </Badge>
+            </motion.div>
+
+            {/* Oversized headline */}
+            <motion.h1 
+              variants={fadeInScale}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-[0.9] tracking-tight"
+            >
+              Professional sponsor
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                execution
+              </span>
+            </motion.h1>
+
+            {/* Enhanced subtitle */}
+            <motion.p 
+              variants={fadeInUp}
+              className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            >
+              Transform deliverable chaos into partnership certainty.
+              <br className="hidden sm:block" />
+              <span className="text-blue-400">Enterprise-grade</span> tracking that scales.
+            </motion.p>
+
+            {/* Dual CTA treatment */}
+            <motion.div 
+              variants={fadeInUp}
+              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+            >
+              <MagneticButton 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold shadow-2xl"
+                asChild
+              >
+                <Link href="/auth/sign-up" className="flex items-center space-x-3">
+                  <span>Start professional tracking</span>
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </MagneticButton>
+
+              <MagneticButton 
+                variant="outline"
+                size="lg" 
+                className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
+                asChild
+              >
+                <Link href="#demo" className="flex items-center space-x-3">
+                  <Play className="h-5 w-5" />
+                  <span>Watch demo</span>
+                </Link>
+              </MagneticButton>
+            </motion.div>
+
+            {/* Trust logos row */}
+            <motion.div 
+              variants={fadeInUp}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"
+            >
+              <TrustLogo name="Global Events Co." />
+              <TrustLogo name="Summit Series" />
+              <TrustLogo name="Industry Connect" />
+              <TrustLogo name="Innovation Forum" />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* Dominant Stats Section - Sunday inspired */}
-      <section className="py-16 sm:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* DRAMATIC STATS SECTION */}
+      <section className="py-24 sm:py-32 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-transparent to-blue-50/50"></div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-5xl mx-auto"
+            viewport={{ once: true, threshold: 0.3 }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 max-w-6xl mx-auto"
           >
-            <motion.div variants={fadeInUp} className="text-center">
-              <AnimatedCounter end={850} suffix="+" duration={2000} />
-              <div className="text-sm sm:text-base text-gray-600 font-medium">
-                Events managed
-              </div>
+            <motion.div variants={fadeInScale} className="text-center group">
+              <motion.div 
+                className="mb-4"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AnimatedCounter 
+                  end={1247} 
+                  suffix="+" 
+                  duration={2000} 
+                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                />
+                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                  Events powered
+                </div>
+                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-3 rounded-full"></div>
+              </motion.div>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="text-center">
-              <AnimatedCounter end={24} prefix="$" suffix="M+" duration={2200} />
-              <div className="text-sm sm:text-base text-gray-600 font-medium">
-                Sponsor value protected
-              </div>
+            <motion.div variants={fadeInScale} className="text-center group">
+              <motion.div 
+                className="mb-4"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AnimatedCounter 
+                  end={47} 
+                  prefix="$" 
+                  suffix="M+" 
+                  duration={2200} 
+                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                />
+                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                  Sponsor value protected
+                </div>
+                <div className="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 rounded-full"></div>
+              </motion.div>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="text-center">
-              <AnimatedCounter end={99} suffix="%" duration={2400} />
-              <div className="text-sm sm:text-base text-gray-600 font-medium">
-                Deliverables completed on time
-              </div>
+            <motion.div variants={fadeInScale} className="text-center group">
+              <motion.div 
+                className="mb-4"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AnimatedCounter 
+                  end={99.2} 
+                  suffix="%" 
+                  duration={2400} 
+                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                />
+                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                  On-time completion rate
+                </div>
+                <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-3 rounded-full"></div>
+              </motion.div>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="text-center">
-              <AnimatedCounter end={47000} suffix="+" duration={2600} />
-              <div className="text-sm sm:text-base text-gray-600 font-medium">
-                Sponsor touchpoints managed
-              </div>
+            <motion.div variants={fadeInScale} className="text-center group">
+              <motion.div 
+                className="mb-4"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AnimatedCounter 
+                  end={127000} 
+                  suffix="+" 
+                  duration={2600} 
+                  className="text-4xl sm:text-5xl lg:text-6xl text-black mb-2"
+                />
+                <div className="text-base sm:text-lg text-gray-600 font-medium">
+                  Touchpoints managed
+                </div>
+                <div className="w-16 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mt-3 rounded-full"></div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Early Social Proof Strip */}
-      <section className="py-20 sm:py-28 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "We've had more sponsor renewals this quarter than in the previous two years combined."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="Sarah Kim"
-                imagePath="/images/testimonials/sarah-chen.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">Sarah Kim, Summit Events</p>
-              </div>
-            </div>
-          </motion.div>
+      {/* TESTIMONIAL BREAKTHROUGH - High contrast */}
+      <section className="py-24 sm:py-32 bg-gradient-to-br from-gray-900 to-black text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute top-20 right-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+            animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.3, 0.1] }}
+            transition={{ duration: 6, repeat: Infinity }}
+          />
         </div>
-      </section>
 
-      {/* Quote/Proof Section */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "When we implemented SponsorAssure across 15 events, sponsor satisfaction scores increased 
-              <span className="text-blue-600"> 35% consistently</span>."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="Marcus Rodriguez"
-                imagePath="/images/testimonials/marcus-rodriguez.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">Marcus Rodriguez, Director of Partnerships, Summit Series</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Feature Section */}
-      <section className="py-20 sm:py-28 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center mb-16"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "Sponsors expect premium execution — no room for missed deliverables."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="David Park"
-                imagePath="/images/testimonials/david-park.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">David Park, Event Operations, Global Tech Conference</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature Grid */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <Clock className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Precision alerts</h3>
-              <p className="text-gray-600">Intelligent deadline management with executive-level timing controls.</p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <BarChart3 className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Executive dashboard</h3>
-              <p className="text-gray-600">Real-time portfolio visibility across all events and partnerships.</p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <Users className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Team coordination</h3>
-              <p className="text-gray-600">Crystal-clear accountability with intelligent workflow automation.</p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <FileText className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Tier frameworks</h3>
-              <p className="text-gray-600">Enterprise-calibrated sponsorship structures from basic to flagship tier.</p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <CheckCircle className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Documentation</h3>
-              <p className="text-gray-600">Comprehensive evidence systems with timestamped verification.</p>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="text-left group">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-blue-200">
-                <Shield className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">Strategic reports</h3>
-              <p className="text-gray-600">Executive-grade portfolios designed for C-level presentations.</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Mid-page Testimonial */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "Large-scale events demand precision systems — our teams now focus on creativity, not compliance."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="Lisa Chang"
-                imagePath="/images/testimonials/lisa-chang.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">Lisa Chang, Sponsor Relations Manager, Industry Connect</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Large Feature Callout - Sunday style */}
-      <section className="py-24 sm:py-32 bg-black text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              "There's an art to event management, 
-              <br />
-              but no art to 
-              <span className="text-blue-400"> tracking deliverables</span>."
-            </h2>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-8">
-              — Jennifer Walsh, VP Events, Innovation Summit
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Alternating Quote/Proof */}
-      <section className="py-20 sm:py-28 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "Enterprise sponsors can coordinate how they want — <span className="text-green-600">teams focus on execution</span>."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="Jennifer Walsh"
-                imagePath="/images/testimonials/jennifer-walsh.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">Jennifer Walsh, VP Events, Innovation Summit</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Another Quote */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black mb-8 italic">
-              "Completion rates went from <span className="text-red-600">78%</span> to <span className="text-green-600">99%</span> on average."
-            </blockquote>
-            <div className="flex items-center justify-center space-x-3">
-              <TestimonialPortrait 
-                className="w-12 h-12" 
-                alt="Michael Torres"
-                imagePath="/images/testimonials/david-park.jpg"
-              />
-              <div className="text-left">
-                <p className="font-medium text-gray-900">Michael Torres, Owner, Meridian Events</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Concise Mid-Page CTA Block */}
-      <section className="py-24 sm:py-32 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              Professional execution.
-              <br />
-              Lasting partnerships.
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Transform sponsor uncertainty into strategic advantage
-            </p>
-            <motion.div 
-              whileHover={{ scale: 1.05 }} 
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
             >
-              <Button 
-                size="lg" 
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
-                asChild
-              >
-                <Link href="/auth/sign-up" className="flex items-center space-x-2">
-                  <span>Start professional tracking</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
+              <blockquote className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 leading-tight">
+                "We went from 
+                <span className="text-red-400"> 78% completion</span> to 
+                <span className="text-green-400"> 99.2%</span> overnight.
+                <br className="hidden sm:block" />
+                This platform 
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> transformed our reputation</span>."
+              </blockquote>
+            </motion.div>
+            
+            <motion.div 
+              className="flex items-center justify-center space-x-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <TestimonialPortrait 
+                className="w-16 h-16" 
+                alt="Sarah Kim"
+                imagePath="/images/testimonials/sarah-chen.jpg"
+              />
+              <div className="text-left">
+                <p className="font-semibold text-xl text-white">Sarah Kim</p>
+                <p className="text-gray-300">Summit Events, VP Operations</p>
+              </div>
+              <div className="hidden sm:flex items-center space-x-1 ml-8">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Final Simple Stats - Sunday style */}
-      <section className="py-16 sm:py-20 bg-white">
+      {/* RICH FEATURE SHOWCASE */}
+      <section className="py-24 sm:py-32 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-20"
+          >
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
+              Enterprise-grade 
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision</span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
+              The professional system your reputation demands
+            </p>
+          </motion.div>
+
+          {/* Features grid with depth */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          >
+            {[
+              {
+                icon: Clock,
+                title: "Precision alerts",
+                description: "Intelligent deadline management with executive-level timing controls and predictive risk assessment.",
+                gradient: "from-blue-500 to-blue-600",
+                bgGradient: "from-blue-50 to-blue-100"
+              },
+              {
+                icon: BarChart3,
+                title: "Executive dashboard",
+                description: "Real-time portfolio visibility across all events and partnerships with strategic insights.",
+                gradient: "from-purple-500 to-purple-600",
+                bgGradient: "from-purple-50 to-purple-100"
+              },
+              {
+                icon: Users,
+                title: "Team coordination",
+                description: "Crystal-clear accountability with intelligent workflow automation and role-based permissions.",
+                gradient: "from-green-500 to-green-600",
+                bgGradient: "from-green-50 to-green-100"
+              },
+              {
+                icon: FileText,
+                title: "Tier frameworks",
+                description: "Enterprise-calibrated sponsorship structures from basic to flagship tier with custom templates.",
+                gradient: "from-orange-500 to-orange-600",
+                bgGradient: "from-orange-50 to-orange-100"
+              },
+              {
+                icon: CheckCircle,
+                title: "Documentation",
+                description: "Comprehensive evidence systems with timestamped verification and automated compliance reporting.",
+                gradient: "from-teal-500 to-teal-600",
+                bgGradient: "from-teal-50 to-teal-100"
+              },
+              {
+                icon: Shield,
+                title: "Strategic reports",
+                description: "Executive-grade portfolios designed for C-level presentations with custom branding options.",
+                gradient: "from-red-500 to-red-600",
+                bgGradient: "from-red-50 to-red-100"
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index}
+                variants={fadeInScale}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="group"
+              >
+                <div className={`relative p-8 rounded-2xl bg-gradient-to-br ${feature.bgGradient} border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden`}>
+                  <div className="relative z-10">
+                    <motion.div 
+                      className={`w-14 h-14 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-6 shadow-lg`}
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <feature.icon className="h-7 w-7 text-white" />
+                    </motion.div>
+                    
+                    <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-gray-700 transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-lg">
+                      {feature.description}
+                    </p>
+                    
+                    <motion.div 
+                      className="flex items-center mt-6 text-gray-700 font-medium"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className="text-sm">Learn more</span>
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </motion.div>
+                  </div>
+                  
+                  {/* Subtle background pattern */}
+                  <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
+                    <feature.icon className="w-full h-full" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* QUOTE CALLOUT - Rhythm breaker */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto text-center"
+          >
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <blockquote className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
+                "Large-scale events demand 
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision systems</span> — 
+                our teams now focus on creativity, not compliance."
+              </blockquote>
+            </motion.div>
+            
+            <div className="flex items-center justify-center space-x-4">
+              <TestimonialPortrait 
+                className="w-14 h-14" 
+                alt="Lisa Chang"
+                imagePath="/images/testimonials/lisa-chang.jpg"
+              />
+              <div className="text-left">
+                <p className="font-semibold text-xl text-black">Lisa Chang</p>
+                <p className="text-gray-600">Sponsor Relations Manager, Industry Connect</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* MID-PAGE CTA - High impact */}
+      <section className="py-24 sm:py-32 bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: "loop" }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <motion.h2 
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              Professional execution.
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Lasting partnerships.
+              </span>
+            </motion.h2>
+            
+            <p className="text-xl sm:text-2xl mb-12 max-w-3xl mx-auto text-gray-300 leading-relaxed">
+              Transform sponsor uncertainty into strategic advantage with enterprise-grade tracking
+            </p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              <motion.div variants={fadeInUp}>
+                <MagneticButton 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-5 text-xl font-semibold shadow-2xl"
+                  asChild
+                >
+                  <Link href="/auth/sign-up" className="flex items-center space-x-3">
+                    <span>Start professional tracking</span>
+                    <ArrowRight className="h-6 w-6" />
+                  </Link>
+                </MagneticButton>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <MagneticButton 
+                  variant="outline"
+                  size="lg" 
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-5 text-lg font-semibold backdrop-blur-sm"
+                  asChild
+                >
+                  <Link href="#demo" className="flex items-center space-x-3">
+                    <ExternalLink className="h-5 w-5" />
+                    <span>Schedule demo</span>
+                  </Link>
+                </MagneticButton>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FINAL STATS - Compact but powerful */}
+      <section className="py-20 sm:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto text-center"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-5xl mx-auto text-center"
           >
-            <motion.div variants={fadeInUp}>
-              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">24/7</div>
-              <div className="text-gray-600">Support ready for you</div>
+            <motion.div 
+              variants={fadeInScale}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">24/7</div>
+              <div className="text-gray-600 text-lg">Enterprise support ready</div>
+              <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-4 rounded-full"></div>
             </motion.div>
             
-            <motion.div variants={fadeInUp}>
-              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">
-                <AnimatedCounter end={7} duration={1500} />
-                <span> days</span>
+            <motion.div 
+              variants={fadeInScale}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="text-5xl sm:text-6xl font-bold text-black mb-3 flex items-center justify-center">
+                <AnimatedCounter end={3} duration={1500} />
+                <span className="ml-2">days</span>
               </div>
-              <div className="text-gray-600">To receive setup and be ready</div>
+              <div className="text-gray-600 text-lg">Full setup and training</div>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-4 rounded-full"></div>
             </motion.div>
             
-            <motion.div variants={fadeInUp}>
-              <div className="text-4xl sm:text-5xl font-bold text-black mb-2">100%</div>
-              <div className="text-gray-600">Deliverable coverage</div>
+            <motion.div 
+              variants={fadeInScale}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">100%</div>
+              <div className="text-gray-600 text-lg">Deliverable coverage</div>
+              <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Minimal Footer - Sunday inspired */}
-      <footer className="bg-gray-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      {/* ENHANCED FOOTER */}
+      <footer className="bg-gradient-to-br from-gray-900 to-black text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             {/* Brand */}
-            <div>
-              <Link href="/" className="flex items-center space-x-2 mb-4">
-                <div className="p-1.5 bg-white rounded-lg">
-                  <Shield className="h-4 w-4 text-black" />
+            <div className="col-span-2 md:col-span-1">
+              <Link href="/" className="flex items-center space-x-3 mb-6">
+                <div className="p-2 bg-gradient-to-br from-white to-gray-200 rounded-xl shadow-lg">
+                  <Shield className="h-6 w-6 text-black" />
                 </div>
-                <span className="font-bold">SponsorAssure</span>
+                <span className="text-xl font-bold">SponsorAssure</span>
               </Link>
+              <p className="text-gray-400 leading-relaxed">
+                Enterprise-grade sponsor tracking that transforms partnerships.
+              </p>
             </div>
             
-            {/* Links */}
+            {/* Product */}
             <div>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/features" className="hover:text-white">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-white">Pricing</Link></li>
-                <li><Link href="/demo" className="hover:text-white">Demo</Link></li>
+              <h3 className="font-semibold mb-4 text-white">Product</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="/demo" className="hover:text-white transition-colors">Demo</Link></li>
+                <li><Link href="/integrations" className="hover:text-white transition-colors">Integrations</Link></li>
               </ul>
             </div>
             
+            {/* Company */}
             <div>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/help" className="hover:text-white">Help</Link></li>
-                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link href="/api" className="hover:text-white">API</Link></li>
+              <h3 className="font-semibold mb-4 text-white">Company</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+                <li><Link href="/press" className="hover:text-white transition-colors">Press</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
             
+            {/* Support */}
             <div>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link href="/about" className="hover:text-white">About</Link></li>
-                <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
-                <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
+              <h3 className="font-semibold mb-4 text-white">Support</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link href="/help" className="hover:text-white transition-colors">Help Center</Link></li>
+                <li><Link href="/api" className="hover:text-white transition-colors">API Docs</Link></li>
+                <li><Link href="/status" className="hover:text-white transition-colors">System Status</Link></li>
+                <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
+              </ul>
+            </div>
+            
+            {/* Legal */}
+            <div>
+              <h3 className="font-semibold mb-4 text-white">Legal</h3>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
+                <li><Link href="/compliance" className="hover:text-white transition-colors">Compliance</Link></li>
               </ul>
             </div>
           </div>
           
-          {/* Bottom */}
-          <div className="border-t border-gray-800 pt-6">
-            <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
-              <p>&copy; 2025 SponsorAssure. All rights reserved.</p>
-              <div className="flex items-center space-x-2 mt-2 sm:mt-0">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span>All systems operational</span>
+          {/* Bottom section */}
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center">
+              <p className="text-gray-400">&copy; 2025 SponsorAssure. All rights reserved.</p>
+              <div className="flex items-center space-x-3 mt-4 sm:mt-0">
+                <motion.div 
+                  className="w-3 h-3 bg-green-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <span className="text-gray-400 text-sm">All systems operational</span>
               </div>
             </div>
           </div>
