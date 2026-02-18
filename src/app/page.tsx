@@ -6,6 +6,7 @@ import {
   StatsSection,
   TestimonialCarousel,
   FeaturesSection,
+  ProofSection,
   CTASection,
   Footer
 } from '@/components/landing'
@@ -18,6 +19,7 @@ export default function HomePage() {
       <StatsSection />
       <TestimonialCarousel />
       <FeaturesSection />
+      <ProofSection />
       <CTASection />
       <Footer />
     </div>
