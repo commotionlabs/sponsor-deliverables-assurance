@@ -164,7 +164,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-white">
       {/* Clean Header */}
       <header className="fixed top-0 w-full z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3">
             <div className="p-2 bg-black rounded-lg">
               <Shield className="h-5 w-5 text-white" />
@@ -184,31 +184,24 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION - Clean white minimal design */}
-      <section ref={heroRef} className="relative min-h-[82vh] flex items-center justify-center overflow-hidden bg-white">
+      {/* HERO SECTION - Apple-style extreme minimalism */}
+      <section ref={heroRef} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-white">
         {/* Removed background accents for clean white canvas */}
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+          className="container mx-auto px-6 sm:px-8 lg:px-12 text-center relative z-10"
         >
           <motion.div
             variants={heroStagger}
             initial="initial"
             animate="animate"
-            className="max-w-3xl mx-auto"
+            className="max-w-2xl mx-auto"
           >
-            {/* Pre-headline badge - minimal */}
-            <motion.div variants={fadeInUp} className="mb-4">
-              <Badge className="bg-gray-100 text-gray-700 border-gray-200 px-3 py-1 text-xs font-medium">
-                1,200+ events • 99.2% completion rate
-              </Badge>
-            </motion.div>
-
-            {/* Hero headline - Apple-style restraint */}
+            {/* Hero headline - Ultra-concise Apple-style */}
             <motion.h1
               variants={fadeInScale}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-[1.1] tracking-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-8 leading-[0.95] tracking-tight"
             >
               Never miss a
               <br />
@@ -217,50 +210,39 @@ export default function HomePage() {
               </span>
             </motion.h1>
 
-            {/* Subtitle - minimal clarity */}
+            {/* Subtitle - Extreme minimal clarity */}
             <motion.p
               variants={fadeInUp}
-              className="text-lg sm:text-xl text-gray-600 mb-6 max-w-xl mx-auto leading-[1.3]"
+              className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-md mx-auto leading-[1.2]"
             >
-              Track commitments. Hit deadlines.
+              Track sponsors.
               <br />
-              Keep sponsors.
+              Hit deadlines.
             </motion.p>
 
-            {/* CTA buttons - Apple-simple */}
+            {/* Single dominant CTA - Apple minimalism */}
             <motion.div
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+              className="mb-16"
             >
               <Button
                 size="lg"
-                className="bg-black hover:bg-gray-800 text-white px-8 py-3 text-base font-medium rounded-full"
+                className="bg-black hover:bg-gray-800 text-white px-10 py-4 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                 asChild
               >
                 <Link href="/auth/sign-up">
                   Get Started
                 </Link>
               </Button>
-
-              <Button
-                variant="ghost"
-                size="lg"
-                className="text-gray-700 hover:text-black px-6 py-3 text-base font-medium"
-                asChild
-              >
-                <Link href="#demo">
-                  Watch Demo
-                </Link>
-              </Button>
             </motion.div>
 
-            {/* Trust indicator - ultra minimal */}
+            {/* Trust indicator - ultra quiet */}
             <motion.div
               variants={fadeInUp}
               className="text-center"
             >
-              <p className="text-sm text-gray-500">
-                Trusted by Global Events, Summit Series, and 1,200+ others
+              <p className="text-sm text-gray-400">
+                Trusted by 1,200+ event organizers
               </p>
             </motion.div>
           </motion.div>
@@ -279,8 +261,8 @@ export default function HomePage() {
       </section>
 
       {/* STATS SECTION */}
-      <section className="py-10 sm:py-14 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -349,8 +331,8 @@ export default function HomePage() {
       </section>
 
       {/* TESTIMONIAL - Apple-style minimal */}
-      <section className="py-16 sm:py-20 bg-gray-50 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-20 sm:py-24 bg-gray-50 relative">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -378,15 +360,15 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-11 sm:py-14 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           {/* Section header - minimal */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto text-center mb-12"
+            className="max-w-2xl mx-auto text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4 leading-[1.1]">
               Three things done right
@@ -399,7 +381,7 @@ export default function HomePage() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-5xl mx-auto"
           >
             {[
               {
@@ -444,8 +426,8 @@ export default function HomePage() {
       {/* Removed redundant quote callout for minimal design */}
 
       {/* CTA - Apple minimal */}
-      <section className="py-20 sm:py-24 bg-white relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-24 sm:py-28 bg-white relative">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -453,19 +435,32 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-[1.1] text-black">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 leading-[1.1] text-black">
               Start today
             </h2>
 
-            <Button
-              size="lg"
-              className="bg-black hover:bg-gray-800 text-white px-8 py-3 text-base font-medium rounded-full"
-              asChild
-            >
-              <Link href="/auth/sign-up">
-                Get Started
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <Button
+                size="lg"
+                className="bg-black hover:bg-gray-800 text-white px-10 py-4 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                asChild
+              >
+                <Link href="/auth/sign-up">
+                  Get Started
+                </Link>
+              </Button>
+              
+              <Button
+                variant="ghost"
+                size="lg"
+                className="text-gray-500 hover:text-black px-6 py-4 text-base font-medium"
+                asChild
+              >
+                <Link href="#demo">
+                  Watch Demo
+                </Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -474,7 +469,7 @@ export default function HomePage() {
 
       {/* MINIMAL FOOTER */}
       <footer className="bg-white text-black border-t border-gray-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-16">
           <div className="flex flex-col items-center text-center space-y-6">
             <Link href="/" className="flex items-center space-x-2">
               <div className="p-2 bg-black rounded-lg">
